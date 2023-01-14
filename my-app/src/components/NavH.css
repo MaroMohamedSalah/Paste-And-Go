@@ -1,0 +1,9 @@
+.Nav-H {
+	/* background-color: var(--LightBlueGray); */
+	background-color: var(--DarkBlueLight);
+	height: 10vh;
+	box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
+}
+.Nav-H .navbar {
+	height: 100%;
+}
