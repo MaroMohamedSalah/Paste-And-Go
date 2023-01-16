@@ -1,9 +1,21 @@
 .Nav-v {
+	position: relative;
 	height: calc(100vh - 14vh - 10vh);
 	width: fit-content;
 	padding: 0px 9px;
 	background-color: var(--DarkBlueLight);
 	box-shadow: 2px 0px 2px -2px rgba(0, 0, 0, 0.2);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: column;
+	transition: all 0.5s ease-in-out;
+}
+.Nav-v .drag {
+	position: absolute;
+	right: -21px;
+	top: 10px;
+	font-size: 1.5em;
 }
 .Nav-v ul {
 	list-style: none;
@@ -18,4 +30,49 @@
 	font-size: 1.75em;
 	color: var(--Pewter);
 	text-decoration: none;
+	transition: all 0.5s ease-in-out;
+}
+@media only screen and (max-width: 768px) {
+	.Nav-v ul a {
+		font-size: 16px;
+	}
+}
+.face:hover {
+	color: #4267b2;
+}
+.insta:hover {
+	color: #c13584;
+}
+.youTube:hover {
+	color: #ff0000;
+}
+.setting {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px 0px;
+	width: 100%;
+	font-size: 1.75em;
+}
+
+.Nav-v .setting .set {
+	color: var(--Yellow);
+	animation: around linear 10s infinite;
+}
+.Nav-v .setting::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	height: 2px;
+	width: calc(100% + 24px);
+	background-color: var(--Pewter);
+}
+@keyframes around {
+	0% {
+		transform: rotate(0);
+	}
+	100% {
+		transform: rotate(1turn);
+	}
 }
