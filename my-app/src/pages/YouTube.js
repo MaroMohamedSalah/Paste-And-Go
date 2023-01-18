@@ -1,18 +1,23 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./YouTube.css";
+import { useRecoilState } from "recoil";
+import YtId from "../Atoms/YtId";
 const YouTube = () => {
 	const [valid, setValid] = useState("");
 	const [error, setError] = useState("");
-	const [URL, setURL] = useState("");
+	const [videoID, setVideoId] = useRecoilState(YtId);
 	const handelValidURL = (e) => {
 		if (e.length !== 0) {
 			let v =
-				/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi.test(
+				/(^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$)/gm.test(
 					e
 				);
 			v === true ? setValid("yes") : setValid("no");
-
-			v === true && setURL(e);
+			let id = e
+				.replace(/(>|<)/gi, "")
+				.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/)[2];
+			v === true && setVideoId(id);
 		} else {
 			setValid("empty");
 		}
@@ -26,18 +31,21 @@ const YouTube = () => {
 		qualityBtns.forEach((element) => {
 			if (valid === "yes") {
 				element.style.opacity = "1";
+				element.style.pointerEvents = "all";
 			} else if (valid === "no") {
 				element.style.opacity = "0";
-				setError(`Invalid URL`);
+				element.style.pointerEvents = "none";
+				setError(`Invalid Youtube video URL`);
 			} else if (valid === "empty") {
 				setError("Can't be Empty");
 				element.style.opacity = "0";
+				element.style.pointerEvents = "none";
 			}
 		});
-	}, [valid]);
+	}, [valid, videoID]);
 	return (
 		<div className="Youtube">
-			<form className="youtube-url media row">
+			<form className="youtube-url media row w-lg-50 w-md-50 w-sm-90">
 				<input
 					type="text"
 					id="youTube"
@@ -58,11 +66,15 @@ const YouTube = () => {
 				>
 					{error} &#128578;
 				</h3>
-				<div className="MP3 col-6">
-					<button type="submit">MP3</button>
+				<div className="MP3 col-lg-6 col-12 p-sm-5">
+					<Link to={"mp3"}>
+						<button type="submit">MP3</button>
+					</Link>
 				</div>
-				<div className="MP4 col-6">
-					<button type="submit">MP4</button>
+				<div className="MP4 col-lg-6 col-12">
+					<Link>
+						<button type="submit">MP4</button>
+					</Link>
 				</div>
 			</form>
 		</div>

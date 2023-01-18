@@ -3,7 +3,10 @@ import "./NavV.css";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
+import Active from "../Atoms/Active";
 const NavV = () => {
+	const [active, setActive] = useRecoilState(Active);
 	const [clickCount, setClickCount] = useState(0);
 	const tooltipTriggerList = document.querySelectorAll(
 		'[data-bs-toggle="tooltip"]'
@@ -28,34 +31,37 @@ const NavV = () => {
 			Setting
 		</Tooltip>
 	);
+	localStorage.getItem("Active") !== "" &&
+		setActive(localStorage.getItem("Active"));
 	useEffect(() => {
 		let instagram = document.querySelector(".insta");
 		let facebook = document.querySelector(".face");
 		let youTube = document.querySelector(".youTube");
-		instagram.style.color = "#c13584";
-		instagram.onclick = () => {
+		instagram.onclick = (e) => {
 			instagram.style.color = "#c13584";
 			facebook.style.color = "var(--Pewter)";
 			youTube.style.color = "var(--Pewter)";
+			setActive(instagram.id);
 		};
 		facebook.onclick = () => {
 			facebook.style.color = "#4267b2";
 			instagram.style.color = "var(--Pewter)";
 			youTube.style.color = "var(--Pewter)";
+			setActive(facebook.id);
 		};
 		youTube.onclick = () => {
 			youTube.style.color = "#ff0000";
 			instagram.style.color = "var(--Pewter)";
 			facebook.style.color = "var(--Pewter)";
+			setActive(youTube.id);
 		};
-
-		console.log(document.querySelectorAll("#socialMediaList a"));
+		document.querySelectorAll("#socialMediaList a")[active].click();
 		document.querySelectorAll("#socialMediaList a").forEach((e) => {
 			clickCount === 0
 				? (e.style.fontSize = "1.75em")
 				: (e.style.fontSize = "2em");
 		});
-	}, [clickCount]);
+	}, [active, clickCount, setActive]);
 	const handelClick = () => {
 		clickCount === 0 ? setClickCount(1) : setClickCount(0);
 		if (clickCount === 0) {
@@ -81,21 +87,21 @@ const NavV = () => {
 				)}
 			</div>
 			<ul id="socialMediaList">
-				<Link className="insta" to={"/"}>
+				<Link id="0" className="insta" to={"/"}>
 					<OverlayTrigger placement="right" overlay={renderTooltipInsta}>
 						<li>
 							<i className="fa-brands fa-instagram"></i>
 						</li>
 					</OverlayTrigger>
 				</Link>
-				<Link className="face" to={"/facebook"}>
+				<Link id="1" className="face" to={"/facebook"}>
 					<OverlayTrigger placement="right" overlay={renderTooltipFace}>
 						<li>
 							<i className="fa-brands fa-facebook-f"></i>
 						</li>
 					</OverlayTrigger>
 				</Link>
-				<Link className="youTube" to={"/youtube"}>
+				<Link id="2" className="youTube" to={"/youtube"}>
 					<OverlayTrigger placement="right" overlay={renderTooltipYouTube}>
 						<li>
 							<i className="fa-brands fa-youtube"></i>
@@ -131,7 +137,17 @@ const NavV = () => {
 						aria-label="Close"
 					></button>
 				</div>
-				<div className="offcanvas-body">...</div>
+				<div className="offcanvas-body">
+					<input
+						type="number"
+						placeholder="Active"
+						onChange={(e) => {
+							e.target.value !== "" &&
+								localStorage.setItem("Active", e.target.value);
+							setActive(localStorage.getItem("Active"));
+						}}
+					/>
+				</div>
 			</div>
 		</div>
 	);

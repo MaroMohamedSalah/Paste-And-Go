@@ -72,3 +72,6 @@
 .MP4 button:hover {
 	background-color: var(--LightBlueGray);
 }
+.spinner-border {
+	color: var(--Yellow);
+}
