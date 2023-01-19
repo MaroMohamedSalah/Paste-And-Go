@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import "./YouTube.css";
 import { useRecoilState } from "recoil";
 import YtId from "../Atoms/YtId";
+import Steps from "../Atoms/Steps";
 const YouTube = () => {
+	const [step, setStep] = useRecoilState(Steps);
 	const [valid, setValid] = useState("");
 	const [error, setError] = useState("");
 	const [videoID, setVideoId] = useRecoilState(YtId);
@@ -25,6 +27,7 @@ const YouTube = () => {
 	useEffect(() => {
 		const qualityBtns = document.querySelectorAll(".Youtube form div");
 		const UrlInput = document.querySelector(".Youtube form input");
+		UrlInput.value.length === 0 && setStep(null);
 		valid === "no" || valid === "empty"
 			? (UrlInput.style.borderColor = "#ff3333")
 			: (UrlInput.style.borderColor = "var(--BlueGray)");
@@ -52,8 +55,10 @@ const YouTube = () => {
 					name="youTube"
 					className="col-12 "
 					required
+					onPaste={() => setStep(0)}
 					onChange={(e) => {
 						handelValidURL(e.target.value);
+						setStep(0);
 					}}
 				/>
 				<label htmlFor="youTube">URL</label>

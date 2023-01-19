@@ -7,3 +7,14 @@
 .Nav-H .navbar {
 	height: 100%;
 }
+
+.Nav-H ul {
+	list-style: none;
+}
+
+.Nav-H ul li {
+	font-size: 1.5em;
+	color: var(--DarkBlue);
+	font-weight: 700;
+	transition: all 1s ease-in-out;
+}

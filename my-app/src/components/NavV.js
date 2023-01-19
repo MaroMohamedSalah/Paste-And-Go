@@ -144,7 +144,8 @@ const NavV = () => {
 						onChange={(e) => {
 							e.target.value !== "" &&
 								localStorage.setItem("Active", e.target.value);
-							setActive(localStorage.getItem("Active"));
+							let a = localStorage.getItem("Active");
+							setActive(a);
 						}}
 					/>
 				</div>
