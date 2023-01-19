@@ -6,25 +6,50 @@ import YtId from "../Atoms/YtId";
 const Mp3YT = () => {
 	const [videoID, setVideoId] = useRecoilState(YtId);
 	const [data, setData] = useState([]);
-	useEffect(() => {
+	const [info, setInfo] = useState([]);
+	const downloadLink = () => {
 		const options = {
 			method: "GET",
-			url: "https://ytstream-download-youtube-videos.p.rapidapi.com/dl",
+			url: "https://youtube-mp36.p.rapidapi.com/dl",
 			params: { id: videoID },
 			headers: {
 				"X-RapidAPI-Key": "0359bd5187msh1d9d91398b35961p168041jsn1ba3b053ae5b",
-				"X-RapidAPI-Host": "ytstream-download-youtube-videos.p.rapidapi.com",
+				"X-RapidAPI-Host": "youtube-mp36.p.rapidapi.com",
 			},
 		};
 
 		axios
 			.request(options)
 			.then(function (response) {
-				setData(response.data);
+				response.status === 200 && setData(response.data);
 			})
 			.catch(function (error) {
 				console.error(error);
 			});
+	};
+	const getVideoInfo = () => {
+		const options = {
+			method: "GET",
+			url: "https://simple-youtube-search.p.rapidapi.com/video",
+			params: { search: `https://youtu.be/${videoID}` },
+			headers: {
+				"X-RapidAPI-Key": "0359bd5187msh1d9d91398b35961p168041jsn1ba3b053ae5b",
+				"X-RapidAPI-Host": "simple-youtube-search.p.rapidapi.com",
+			},
+		};
+
+		axios
+			.request(options)
+			.then(function (response) {
+				response.status === 200 && setInfo(response.data);
+			})
+			.catch(function (error) {
+				console.error(error);
+			});
+	};
+	useEffect(() => {
+		downloadLink();
+		getVideoInfo();
 	}, []);
 	return (
 		<div className="Mp3 h-100">
@@ -34,11 +59,39 @@ const Mp3YT = () => {
 						<span class="visually-hidden">Loading...</span>
 					</div>
 				) : (
-					<div className="downloadCard">
-						<div className="preview">
-							<img src={data.thumbnail[1].url} alt="" />
+					<div className="downloadCard w-75 h-100 p-2 d-flex align-items-center justify-content-around flex-column">
+						<div className="preview row">
+							{info.length === 0 ? (
+								<div className="img col-6">
+									<div class="spinner-grow" role="status">
+										<span class="visually-hidden">Loading...</span>
+									</div>
+								</div>
+							) : (
+								<img className="col-6" src={info.result.thumbnail.url} alt="" />
+							)}
+							<div className="des col-6 d-flex justify-content-between flex-column">
+								<div className="title fs-2">{data.title}</div>
+								<p className="info" aria-hidden="true">
+									Duration:{" "}
+									{info.length === 0 ? (
+										<span class="placeholder col-2"></span>
+									) : (
+										info.result.duration_formatted
+									)}
+								</p>
+							</div>
 						</div>
-						<div className="title">{data.title}</div>
+						<div className="download-selection w-100 justify-content-center row">
+							<a
+								href={data.link}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="btn col-3 m-2 w-100"
+							>
+								<h5 className="z-3 position-relative">Download MP3</h5>
+							</a>
+						</div>
 					</div>
 				)}
 			</div>

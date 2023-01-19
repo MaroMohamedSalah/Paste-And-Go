@@ -8,6 +8,8 @@ const NavH = () => {
 		let steps = document.querySelectorAll(".Nav-H ul li");
 		if (step !== null) {
 			steps[step].style.color = "var(--Pewter)";
+		} else {
+			steps.forEach((e) => (e.style.color = "var(--DarkBlue)"));
 		}
 	}, [step]);
 	return (

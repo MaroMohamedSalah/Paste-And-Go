@@ -35,14 +35,17 @@ const YouTube = () => {
 			if (valid === "yes") {
 				element.style.opacity = "1";
 				element.style.pointerEvents = "all";
+				setStep(0);
 			} else if (valid === "no") {
 				element.style.opacity = "0";
 				element.style.pointerEvents = "none";
 				setError(`Invalid Youtube video URL`);
+				setStep(null);
 			} else if (valid === "empty") {
 				setError("Can't be Empty");
 				element.style.opacity = "0";
 				element.style.pointerEvents = "none";
+				setStep(null);
 			}
 		});
 	}, [valid, videoID]);
@@ -55,10 +58,8 @@ const YouTube = () => {
 					name="youTube"
 					className="col-12 "
 					required
-					onPaste={() => setStep(0)}
 					onChange={(e) => {
 						handelValidURL(e.target.value);
-						setStep(0);
 					}}
 				/>
 				<label htmlFor="youTube">URL</label>
