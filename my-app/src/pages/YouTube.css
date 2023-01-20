@@ -125,3 +125,12 @@
 .download-selection .btn:hover::after {
 	width: 100%;
 }
+@media only screen and (max-width: 768px) {
+	.media {
+		width: 80% !important;
+	}
+	.media .error {
+		width: 100%;
+		text-align: center;
+	}
+}

@@ -5,6 +5,7 @@ import Tooltip from "react-bootstrap/Tooltip";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import Active from "../Atoms/Active";
+import Setting from "../pages/Setting";
 const NavV = () => {
 	const [active, setActive] = useRecoilState(Active);
 	const [clickCount, setClickCount] = useState(0);
@@ -55,13 +56,13 @@ const NavV = () => {
 			facebook.style.color = "var(--Pewter)";
 			setActive(youTube.id);
 		};
-		document.querySelectorAll("#socialMediaList a")[active].click();
+		document.querySelectorAll("#socialMediaList a")[+active].click();
 		document.querySelectorAll("#socialMediaList a").forEach((e) => {
 			clickCount === 0
 				? (e.style.fontSize = "1.75em")
 				: (e.style.fontSize = "2em");
 		});
-	}, [active, clickCount, setActive]);
+	}, [active, clickCount]);
 	const handelClick = () => {
 		clickCount === 0 ? setClickCount(1) : setClickCount(0);
 		if (clickCount === 0) {
@@ -120,36 +121,7 @@ const NavV = () => {
 					></i>
 				</OverlayTrigger>
 			</div>
-			<div
-				className="offcanvas offcanvas-top"
-				tabIndex="-1"
-				id="offcanvasTop"
-				aria-labelledby="offcanvasTopLabel"
-			>
-				<div className="offcanvas-header">
-					<h5 className="offcanvas-title" id="offcanvasTopLabel">
-						Setting
-					</h5>
-					<button
-						type="button"
-						className="btn-close"
-						data-bs-dismiss="offcanvas"
-						aria-label="Close"
-					></button>
-				</div>
-				<div className="offcanvas-body">
-					<input
-						type="number"
-						placeholder="Active"
-						onChange={(e) => {
-							e.target.value !== "" &&
-								localStorage.setItem("Active", e.target.value);
-							let a = localStorage.getItem("Active");
-							setActive(a);
-						}}
-					/>
-				</div>
-			</div>
+			<Setting />
 		</div>
 	);
 };

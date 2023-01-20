@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import axios from "axios";
 import YtId from "../Atoms/YtId";
+import Steps from "../Atoms/Steps";
 
 const Mp3YT = () => {
 	const [videoID, setVideoId] = useRecoilState(YtId);
 	const [data, setData] = useState([]);
 	const [info, setInfo] = useState([]);
+	const [step, setStep] = useRecoilState(Steps);
 	const downloadLink = () => {
 		const options = {
 			method: "GET",
@@ -56,15 +58,15 @@ const Mp3YT = () => {
 			<div className="h-100 d-flex justify-content-center align-items-center">
 				{data.length === 0 ? (
 					<div className="spinner-border" role="status">
-						<span class="visually-hidden">Loading...</span>
+						<span className="visually-hidden">Loading...</span>
 					</div>
 				) : (
 					<div className="downloadCard w-75 h-100 p-2 d-flex align-items-center justify-content-around flex-column">
 						<div className="preview row">
 							{info.length === 0 ? (
 								<div className="img col-6">
-									<div class="spinner-grow" role="status">
-										<span class="visually-hidden">Loading...</span>
+									<div className="spinner-grow" role="status">
+										<span className="visually-hidden">Loading...</span>
 									</div>
 								</div>
 							) : (
@@ -75,7 +77,7 @@ const Mp3YT = () => {
 								<p className="info" aria-hidden="true">
 									Duration:{" "}
 									{info.length === 0 ? (
-										<span class="placeholder col-2"></span>
+										<span className="placeholder col-2"></span>
 									) : (
 										info.result.duration_formatted
 									)}
@@ -88,6 +90,7 @@ const Mp3YT = () => {
 								target="_blank"
 								rel="noopener noreferrer"
 								className="btn col-3 m-2 w-100"
+								onClick={() => setStep(2)}
 							>
 								<h5 className="z-3 position-relative">Download MP3</h5>
 							</a>

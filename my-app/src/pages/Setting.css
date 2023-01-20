@@ -1,0 +1,23 @@
+.Setting {
+	background-color: var(--Pewter);
+}
+.Setting .offcanvas-header {
+	background-color: var(--LightBlueGray);
+	color: var(--DarkBlue);
+}
+.Setting ul {
+	flex-direction: row !important;
+}
+.Setting ul li {
+	position: relative;
+	font-size: 3em;
+	color: var(--DarkBlue);
+	cursor: pointer;
+}
+.Setting ul li .select {
+	position: absolute;
+	font-size: 0.45em;
+	color: var(--LightBlueGray);
+	transition: all 0.5s ease-in-out;
+	opacity: 0;
+}
