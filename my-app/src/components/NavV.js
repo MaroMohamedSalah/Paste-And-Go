@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import Active from "../Atoms/Active";
 import Setting from "../pages/Setting";
+import "animate.css";
 const NavV = () => {
 	const [active, setActive] = useRecoilState(Active);
 	const [clickCount, setClickCount] = useState(0);
@@ -56,30 +57,26 @@ const NavV = () => {
 			facebook.style.color = "var(--Pewter)";
 			setActive(youTube.id);
 		};
-		document.querySelectorAll("#socialMediaList a")[+active].click();
+		document.querySelectorAll("#socialMediaList a")[active].click();
 		document.querySelectorAll("#socialMediaList a").forEach((e) => {
 			clickCount === 0
 				? (e.style.fontSize = "1.75em")
 				: (e.style.fontSize = "2em");
 		});
-	}, [active, clickCount]);
-	const handelClick = () => {
-		clickCount === 0 ? setClickCount(1) : setClickCount(0);
-		if (clickCount === 0) {
-			setClickCount(1);
-		}
-	};
+	}, [active]);
 	return (
 		<div
 			className={
 				clickCount === 0
-					? "Nav-v col-lg-1 col-md-2 col-1"
+					? "Nav-v col-lg-1 col-md-2 col-1 animate__headShake"
 					: "Nav-v col-lg-1 col-md-2 col-3"
 			}
 		>
 			<div
 				className="drag d-md-none d-lg-none d-sm-block"
-				onClick={handelClick}
+				onClick={() => {
+					clickCount === 0 ? setClickCount(1) : setClickCount(0);
+				}}
 			>
 				{clickCount === 0 ? (
 					<i className="fa-solid fa-chevron-right"></i>
@@ -88,7 +85,7 @@ const NavV = () => {
 				)}
 			</div>
 			<ul id="socialMediaList">
-				<Link id="0" className="insta" to={"/"}>
+				<Link id="0" className="insta" to={"/insta"}>
 					<OverlayTrigger placement="right" overlay={renderTooltipInsta}>
 						<li>
 							<i className="fa-brands fa-instagram"></i>

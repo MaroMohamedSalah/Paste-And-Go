@@ -10,6 +10,8 @@
 	align-items: center;
 	flex-direction: column;
 	transition: all 0.5s ease-in-out;
+	animation: animate__headShake; /* referring directly to the animation's @keyframe declaration */
+	animation-duration: 2s; /* don't forget to set a duration! */
 }
 .Nav-v .drag {
 	position: absolute;

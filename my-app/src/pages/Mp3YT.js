@@ -3,6 +3,8 @@ import { useRecoilState } from "recoil";
 import axios from "axios";
 import YtId from "../Atoms/YtId";
 import Steps from "../Atoms/Steps";
+import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const Mp3YT = () => {
 	const [videoID, setVideoId] = useRecoilState(YtId);
@@ -64,15 +66,19 @@ const Mp3YT = () => {
 					<div className="downloadCard w-75 h-100 p-2 d-flex align-items-center justify-content-around flex-column">
 						<div className="preview row">
 							{info.length === 0 ? (
-								<div className="img col-6">
+								<div className="img col-md-6 col-lg-6 col-12 h-50">
 									<div className="spinner-grow" role="status">
 										<span className="visually-hidden">Loading...</span>
 									</div>
 								</div>
 							) : (
-								<img className="col-6" src={info.result.thumbnail.url} alt="" />
+								<img
+									className="col-md-6 col-lg-6 col img-fluid"
+									src={info.result.thumbnail.url}
+									alt=""
+								/>
 							)}
-							<div className="des col-6 d-flex justify-content-between flex-column">
+							<div className="des col-md-6 col-lg-6 col d-flex justify-content-between flex-column">
 								<div className="title fs-2">{data.title}</div>
 								<p className="info" aria-hidden="true">
 									Duration:{" "}
@@ -87,10 +93,25 @@ const Mp3YT = () => {
 						<div className="download-selection w-100 justify-content-center row">
 							<a
 								href={data.link}
-								target="_blank"
-								rel="noopener noreferrer"
 								className="btn col-3 m-2 w-100"
-								onClick={() => setStep(2)}
+								onClick={(e) => {
+									data.status === "fail" && e.preventDefault();
+									data.status === "fail"
+										? Swal.fire({
+												icon: "error",
+												title: "Oops...",
+												text: "Long audio of more than 2 hr duration are not allowed",
+										  })
+										: setStep(2);
+									data.status !== "fail" &&
+										Swal.fire({
+											position: "top-end",
+											icon: "success",
+											title: "Your MP3 has been downloaded",
+											showConfirmButton: false,
+											timer: 1500,
+										});
+								}}
 							>
 								<h5 className="z-3 position-relative">Download MP3</h5>
 							</a>

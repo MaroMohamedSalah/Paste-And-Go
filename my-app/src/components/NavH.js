@@ -1,11 +1,12 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import Steps from "../Atoms/Steps";
 import "./NavH.css";
 const NavH = () => {
 	const [step, setStep] = useRecoilState(Steps);
 	useEffect(() => {
-		let steps = document.querySelectorAll(".Nav-H ul li");
+		let steps = document.querySelectorAll(".Nav-H ul  li");
 		if (step !== null) {
 			steps[step].style.color = "var(--Pewter)";
 			steps[step].children[0].style.color = "var(--Yellow)";
@@ -28,12 +29,14 @@ const NavH = () => {
 								<i className="fa-solid fa-paste"></i>
 							</span>
 						</li>
+
 						<li>
 							Select{" "}
 							<span>
 								<i className="fa-solid fa-arrow-pointer"></i>
 							</span>
 						</li>
+
 						<li>
 							GO{" "}
 							<span>

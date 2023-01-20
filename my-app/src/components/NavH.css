@@ -17,7 +17,9 @@
 	font-weight: 700;
 	transition: all 1s ease-in-out;
 }
-
+.Nav-H ul a {
+	text-decoration: none;
+}
 .Nav-H ul li span {
 	transition: all 1s ease-in-out;
 	font-size: 0.75em;

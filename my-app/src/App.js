@@ -27,7 +27,7 @@ const App = () => {
 							<Route path="" element={<YouTube />} />
 							<Route path="mp3" element={<Mp3YT />} />
 						</Route>
-						<Route path="/" element={<Insta />} />
+						<Route path="insta" element={<Insta />} />
 					</Routes>
 				</div>
 				<Footer />
