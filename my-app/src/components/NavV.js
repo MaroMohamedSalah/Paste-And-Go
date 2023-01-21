@@ -33,7 +33,7 @@ const NavV = () => {
 			Setting
 		</Tooltip>
 	);
-	localStorage.getItem("Active") !== "" &&
+	localStorage.getItem("Active") !== null &&
 		setActive(localStorage.getItem("Active"));
 	useEffect(() => {
 		let instagram = document.querySelector(".insta");
@@ -85,7 +85,7 @@ const NavV = () => {
 				)}
 			</div>
 			<ul id="socialMediaList">
-				<Link id="0" className="insta" to={"/insta"}>
+				<Link id="0" className="insta" to={"/"}>
 					<OverlayTrigger placement="right" overlay={renderTooltipInsta}>
 						<li>
 							<i className="fa-brands fa-instagram"></i>

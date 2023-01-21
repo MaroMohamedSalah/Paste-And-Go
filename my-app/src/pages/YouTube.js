@@ -77,8 +77,8 @@ const YouTube = () => {
 						<button type="submit">MP3</button>
 					</Link>
 				</div>
-				<div className="MP4 col-lg-6 col-12">
-					<Link onClick={() => setStep(1)}>
+				<div className="MP3 col-lg-6 col-12 p-sm-5">
+					<Link to={"mp4"} onClick={() => setStep(1)}>
 						<button type="submit">MP4</button>
 					</Link>
 				</div>

@@ -7,6 +7,7 @@ import FaceBook from "./pages/Facebook";
 import YouTube from "./pages/YouTube";
 import Insta from "./pages/Insta";
 import Mp3YT from "./pages/Mp3YT";
+import Mp4YT from "./pages/Mp4YT";
 const App = () => {
 	return (
 		<div className="App row me-0">
@@ -25,9 +26,10 @@ const App = () => {
 							}
 						>
 							<Route path="" element={<YouTube />} />
+							<Route path="mp4" element={<Mp4YT />} />
 							<Route path="mp3" element={<Mp3YT />} />
 						</Route>
-						<Route path="insta" element={<Insta />} />
+						<Route path="/" element={<Insta />} />
 					</Routes>
 				</div>
 				<Footer />
