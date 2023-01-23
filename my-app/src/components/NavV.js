@@ -60,10 +60,10 @@ const NavV = () => {
 		document.querySelectorAll("#socialMediaList a")[active].click();
 		document.querySelectorAll("#socialMediaList a").forEach((e) => {
 			clickCount === 0
-				? (e.style.fontSize = "1.75em")
+				? (e.style.fontSize = "1em")
 				: (e.style.fontSize = "2em");
 		});
-	}, [active]);
+	}, [active, clickCount]);
 	return (
 		<div
 			className={

@@ -11,7 +11,7 @@
 	flex-direction: column;
 	transition: all 0.5s ease-in-out;
 	animation: animate__headShake; /* referring directly to the animation's @keyframe declaration */
-	animation-duration: 2s; /* don't forget to set a duration! */
+	animation-duration: 5s; /* don't forget to set a duration! */
 }
 .Nav-v .drag {
 	position: absolute;
@@ -40,13 +40,13 @@
 	}
 }
 .face:hover {
-	color: #4267b2;
+	color: #4267b2 !important;
 }
 .insta:hover {
-	color: #c13584;
+	color: #c13584 !important;
 }
 .youTube:hover {
-	color: #ff0000;
+	color: #ff0000 !important;
 }
 .setting {
 	position: relative;
