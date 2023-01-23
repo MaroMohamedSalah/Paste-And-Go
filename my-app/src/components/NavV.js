@@ -35,6 +35,8 @@ const NavV = () => {
 	);
 	localStorage.getItem("Active") !== null &&
 		setActive(localStorage.getItem("Active"));
+
+	// use Effect for Active
 	useEffect(() => {
 		let instagram = document.querySelector(".insta");
 		let facebook = document.querySelector(".face");
@@ -58,12 +60,18 @@ const NavV = () => {
 			setActive(youTube.id);
 		};
 		document.querySelectorAll("#socialMediaList a")[active].click();
-		document.querySelectorAll("#socialMediaList a").forEach((e) => {
-			clickCount === 0
-				? (e.style.fontSize = "1em")
-				: (e.style.fontSize = "2em");
-		});
-	}, [active, clickCount]);
+	}, [active]);
+
+	// useEffect for clickCount
+	useEffect(() => {
+		if (window.matchMedia("(max-width: 700px)").matches) {
+			document.querySelectorAll("#socialMediaList a").forEach((e) => {
+				clickCount === 0
+					? (e.style.fontSize = "1em")
+					: (e.style.fontSize = "2em");
+			});
+		}
+	}, [clickCount]);
 	return (
 		<div
 			className={

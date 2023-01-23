@@ -126,7 +126,7 @@ const Mp3YT = () => {
 								/>
 							)}
 							<div className="des col-md-6 col-lg-6 col d-flex justify-content-between flex-column">
-								<div className="title fs-2">{data.title}</div>
+								<div className="title fs-3">{data.title}</div>
 								<p className="info" aria-hidden="true">
 									Duration:{" "}
 									{info.length === 0 ? (
