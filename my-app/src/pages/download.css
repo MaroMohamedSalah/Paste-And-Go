@@ -1,0 +1,53 @@
+.spinner-border,
+.spinner-grow {
+	color: var(--Yellow);
+}
+
+.des .title {
+	color: var(--LightBlueGray);
+	text-transform: capitalize;
+}
+.des .info {
+	color: var(--Yellow);
+	font-weight: 100;
+	opacity: 0.5;
+}
+.downloadCard .img {
+	display: flex;
+	background-color: var(--DarkBlueLight);
+	border-radius: 10px;
+	justify-content: center;
+	align-items: center;
+}
+.download-selection .btn {
+	position: relative;
+	background-color: var(--BlueGray);
+	color: var(--DarkBlue);
+	transition: all 0.5s ease-in-out;
+}
+.download-selection .btn h5 {
+	z-index: 10;
+	transition: all 0.2s 0.2s ease-in-out;
+}
+.download-selection .btn::after {
+	position: absolute;
+	content: "";
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 0%;
+	border-radius: 0.375rem;
+	background-color: var(--Yellow);
+	transition: all 0.2s ease-in-out;
+	z-index: 5;
+}
+.download-selection .btn:hover {
+	background-color: var(--LightBlueGray);
+}
+.download-selection .btn:hover h5 {
+	color: var(--DarkBlue);
+	font-weight: 700;
+}
+.download-selection .btn:hover::after {
+	width: 100%;
+}

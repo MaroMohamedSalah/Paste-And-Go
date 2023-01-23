@@ -18,6 +18,7 @@
 	right: -21px;
 	top: 10px;
 	font-size: 1.5em;
+	color: var(--Yellow);
 }
 .Nav-v ul {
 	list-style: none;

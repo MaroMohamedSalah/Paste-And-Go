@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./YouTube.css";
+import "./URLgetter.css";
+import "./download.css";
 import { useRecoilState } from "recoil";
 import YtId from "../Atoms/YtId";
 import Steps from "../Atoms/Steps";
@@ -25,13 +26,13 @@ const YouTube = () => {
 		}
 	};
 	useEffect(() => {
-		const qualityBtns = document.querySelectorAll(".Youtube form div");
+		const formatsBtns = document.querySelectorAll(".Youtube form div");
 		const UrlInput = document.querySelector(".Youtube form input");
 		UrlInput.value.length === 0 && setStep(null);
 		valid === "no" || valid === "empty"
 			? (UrlInput.style.borderColor = "#ff3333")
 			: (UrlInput.style.borderColor = "var(--BlueGray)");
-		qualityBtns.forEach((element) => {
+		formatsBtns.forEach((element) => {
 			if (valid === "yes") {
 				element.style.opacity = "1";
 				element.style.pointerEvents = "all";
@@ -50,7 +51,7 @@ const YouTube = () => {
 		});
 	}, [valid, videoID]);
 	return (
-		<div className="Youtube">
+		<div className="Youtube urlGetter">
 			<form className="youtube-url media row w-lg-50 w-md-50 w-sm-90">
 				<input
 					type="text"
@@ -62,7 +63,7 @@ const YouTube = () => {
 						handelValidURL(e.target.value);
 					}}
 				/>
-				<label htmlFor="youTube">URL</label>
+				<label htmlFor="youTube">YouTube URL</label>
 				<h3
 					className={
 						valid === "no" || valid === "empty"
