@@ -1,11 +1,5 @@
 import "./App.css";
-import {
-	BrowserRouter,
-	Outlet,
-	Route,
-	Routes,
-	useNavigate,
-} from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import NavH from "./components/NavH";
 import NavV from "./components/NavV";
 import Footer from "./components/Footer";
@@ -15,7 +9,10 @@ import Insta from "./pages/Insta";
 import Mp3YT from "./pages/Mp3YT";
 import Mp4YT from "./pages/Mp4YT";
 import Mp3FB from "./pages/Mp3FB";
+import Mp4FB from "./pages/Mp4FB";
+import SelectPlane from "./components/SelectPlane";
 const App = () => {
+	localStorage.getItem("plan") === null && localStorage.setItem("plan", "FREE"); // set plan to FREE by default
 	return (
 		<div className="App row me-0">
 			<BrowserRouter>
@@ -32,7 +29,7 @@ const App = () => {
 							}
 						>
 							<Route path="" element={<FaceBook />} />
-							{/* <Route path="mp4" element={<Mp4FB />} /> */}
+							<Route path="mp4" element={<Mp4FB />} />
 							<Route path="mp3" element={<Mp3FB />} />
 						</Route>
 						<Route

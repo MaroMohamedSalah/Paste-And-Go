@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./URLgetter.css";
 import "./download.css";
+import stillWorking from "../imgs/still working on it.gif";
 import { useRecoilState } from "recoil";
 import YtId from "../Atoms/YtId";
 import Steps from "../Atoms/Steps";
@@ -21,8 +22,8 @@ const Facebook = () => {
 		}
 	};
 	useEffect(() => {
-		const formatsBtns = document.querySelectorAll(".Youtube form div");
-		const UrlInput = document.querySelector(".Youtube form input");
+		const formatsBtns = document.querySelectorAll(".Facebook form div");
+		const UrlInput = document.querySelector(".Facebook form input");
 		UrlInput.value.length === 0 && setStep(null);
 		valid === "no" || valid === "empty"
 			? (UrlInput.style.borderColor = "#ff3333")
@@ -46,19 +47,19 @@ const Facebook = () => {
 		});
 	}, [valid]);
 	return (
-		<div className="Youtube urlGetter">
-			<form className="youtube-url media row w-lg-50 w-md-50 w-sm-90">
+		<div className="Facebook urlGetter">
+			<form className="facebook-url media row w-lg-50 w-md-50 w-sm-90">
 				<input
 					type="text"
-					id="youTube"
-					name="youTube"
+					id="facebook"
+					name="facebook"
 					className="col-12 "
 					required
 					onChange={(e) => {
 						handelValidURL(e.target.value);
 					}}
 				/>
-				<label htmlFor="youTube">FaceBook URL</label>
+				<label htmlFor="facebook">Facebook URL</label>
 				<h3
 					className={
 						valid === "no" || valid === "empty"

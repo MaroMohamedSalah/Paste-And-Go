@@ -1,0 +1,17 @@
+.Insta {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.Insta .title {
+	color: #c13584;
+	padding: 10px;
+	font-size: 4em;
+}
+.Insta .op {
+	text-decoration: none;
+	width: 100px;
+	height: 100px;
+	background: red;
+}

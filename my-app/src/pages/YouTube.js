@@ -5,11 +5,12 @@ import "./download.css";
 import { useRecoilState } from "recoil";
 import YtId from "../Atoms/YtId";
 import Steps from "../Atoms/Steps";
+import Swal from "sweetalert2";
 const YouTube = () => {
 	const [step, setStep] = useRecoilState(Steps);
+	const [videoID, setVideoId] = useRecoilState(YtId);
 	const [valid, setValid] = useState("");
 	const [error, setError] = useState("");
-	const [videoID, setVideoId] = useRecoilState(YtId);
 	const handelValidURL = (e) => {
 		if (e.length !== 0) {
 			let v =
