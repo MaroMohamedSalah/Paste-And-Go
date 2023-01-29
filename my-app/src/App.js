@@ -10,11 +10,12 @@ import Mp3YT from "./pages/Mp3YT";
 import Mp4YT from "./pages/Mp4YT";
 import Mp3FB from "./pages/Mp3FB";
 import Mp4FB from "./pages/Mp4FB";
-import SelectPlane from "./components/SelectPlane";
+import SelectPlan from "./components/SelectPlan";
 const App = () => {
 	localStorage.getItem("plan") === null && localStorage.setItem("plan", "FREE"); // set plan to FREE by default
 	return (
 		<div className="App row me-0">
+			{/* <SelectPlan /> */}
 			<BrowserRouter>
 				<NavH />
 				<NavV />
@@ -44,7 +45,8 @@ const App = () => {
 							<Route path="mp4" element={<Mp4YT />} />
 							<Route path="mp3" element={<Mp3YT />} />
 						</Route>
-						<Route path="/" element={<Insta />} />
+						{/* <Route path="/" element={<Insta />} /> */}
+						<Route path="/" element={<SelectPlan />} />
 					</Routes>
 				</div>
 				<Footer />

@@ -29,7 +29,8 @@
 	justify-content: space-around;
 	padding: 0;
 }
-.Nav-v ul a {
+.Nav-v ul a,
+.plans {
 	font-size: 1.75em;
 	color: var(--Pewter);
 	text-decoration: none;
@@ -48,6 +49,12 @@
 }
 .youTube:hover {
 	color: #ff0000 !important;
+}
+.plans {
+	font-size: 1em;
+}
+.plans:hover {
+	color: var(--Yellow);
 }
 .setting {
 	position: relative;

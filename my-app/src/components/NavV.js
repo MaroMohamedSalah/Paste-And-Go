@@ -7,6 +7,7 @@ import { useRecoilState } from "recoil";
 import Active from "../Atoms/Active";
 import Setting from "../pages/Setting";
 import "animate.css";
+import ShowPlans from "../pages/ShowPlans";
 const NavV = () => {
 	const [active, setActive] = useRecoilState(Active);
 	const [clickCount, setClickCount] = useState(0);
@@ -70,6 +71,9 @@ const NavV = () => {
 					? (e.style.fontSize = "1em")
 					: (e.style.fontSize = "2em");
 			});
+			clickCount === 0
+				? (document.querySelector(".plans").style.opacity = "0")
+				: (document.querySelector(".plans").style.opacity = "1");
 		}
 	}, [clickCount]);
 	return (
@@ -115,6 +119,15 @@ const NavV = () => {
 					</OverlayTrigger>
 				</Link>
 			</ul>
+			<Link
+				className="plans"
+				type="button"
+				data-bs-toggle="offcanvas"
+				data-bs-target="#offcanvasTop2"
+				aria-controls="offcanvasTop2"
+			>
+				Plans
+			</Link>
 			<div className="setting">
 				<OverlayTrigger placement="right" overlay={renderTooltipSetting}>
 					<i
@@ -127,6 +140,7 @@ const NavV = () => {
 				</OverlayTrigger>
 			</div>
 			<Setting />
+			<ShowPlans />
 		</div>
 	);
 };
