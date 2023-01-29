@@ -10,7 +10,6 @@ import { Link, useNavigate } from "react-router-dom";
 const Mp3FB = () => {
 	const [step, setStep] = useRecoilState(Steps);
 	const [url, setUrl] = useRecoilState(FBurl);
-	console.log(url);
 	const [data, setData] = useState([]); // download link
 	const [isError, setIsError] = useState(false);
 	const navigate = useNavigate();
@@ -39,16 +38,27 @@ const Mp3FB = () => {
 		axios
 			.request(options)
 			.then(function (response) {
-				console.log(response.data);
-				response.status === 200
-					? setData(response.data)
-					: Swal.fire({
-							icon: "error",
-							title: "Oops...",
-							text: "Something went wrong!",
-							footer:
-								'<a href="https://wa.me/+2001102654851">Contact the owner?</a>',
-					  });
+				if (response.status === 200) {
+					setData(response.data);
+				} else if (response.status === 500) {
+					Swal.fire({
+						icon: "error",
+						title: "Oops...",
+						text: "Server Error!",
+						footer:
+							'<a href="https://wa.me/+2001102654851">Contact the owner?</a>',
+					});
+				} else {
+					Swal.fire({
+						icon: "error",
+						title: "Oops...",
+						text: "Something went wrong!",
+						footer:
+							'<a href="https://wa.me/+2001102654851">Contact the owner?</a>',
+					});
+				}
+				response.data.requested_formats[1].resolution !== "audio only" &&
+					setIsError(true);
 			})
 			.catch(function (error) {
 				Swal.fire({
@@ -61,13 +71,13 @@ const Mp3FB = () => {
 			});
 	};
 	useEffect(() => {
-		// downloadLink();
+		downloadLink();
 	}, []);
 	return (
 		<div className="Mp3 h-100">
-			<h1 className="text-center">I'm Still Working On It</h1>
-			<img className="img-fluid w-25" src={stillWorking} alt="" srcset="" />
-			{/* <div className="h-100 d-flex justify-content-center align-items-center">
+			{/* <h1 className="text-center">I'm Still Working On It</h1>
+			<img className="img-fluid w-25" src={stillWorking} alt="" srcset="" /> */}
+			<div className="h-100 d-flex justify-content-center align-items-center">
 				{data.length === 0 ? (
 					<div className="spinner-border" role="status">
 						<span className="visually-hidden">Loading...</span>
@@ -78,7 +88,7 @@ const Mp3FB = () => {
 							<img
 								className="col-md-6 col-lg-6 col img-fluid"
 								src={data.thumbnail}
-								alt=""
+								alt="Video"
 							/>
 							<div className="des col-md-6 col-lg-6 col d-flex justify-content-between flex-column">
 								<div className="title fs-3">{data.title}</div>
@@ -90,8 +100,9 @@ const Mp3FB = () => {
 						</div>
 						<div className="download-selection w-100 justify-content-center row">
 							<a
-								href={data.link}
-								target="_self"
+								href={data.requested_formats[1].url}
+								rel="noopener noreferrer"
+								target="_blank"
 								className="btn col-3 m-2 w-100"
 								onClick={(e) => {
 									data.status === "fail" && e.preventDefault();
@@ -119,7 +130,7 @@ const Mp3FB = () => {
 				) : (
 					handelError()
 				)}
-			</div> */}
+			</div>
 		</div>
 	);
 };

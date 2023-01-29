@@ -1,6 +1,6 @@
 .Nav-v {
 	position: relative;
-	height: calc(100vh - 14vh - 10vh);
+	min-height: calc(100vh - 14vh - 10vh);
 	width: fit-content;
 	padding: 0px 9px;
 	background-color: var(--DarkBlueLight);
