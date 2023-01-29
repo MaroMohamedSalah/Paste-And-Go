@@ -38,9 +38,23 @@ const Mp3FB = () => {
 		axios
 			.request(options)
 			.then(function (response) {
+				console.log(response.status);
 				if (response.status === 200) {
 					setData(response.data);
-				} else if (response.status === 500) {
+				} else {
+					Swal.fire({
+						icon: "error",
+						title: "Oops...",
+						text: "Something went wrong!",
+						footer:
+							'<a href="https://wa.me/+2001102654851">Contact the owner?</a>',
+					});
+				}
+				response.data.requested_formats[1].resolution !== "audio only" &&
+					setIsError(true);
+			})
+			.catch(function (error) {
+				if (error.request.readyState === 4) {
 					Swal.fire({
 						icon: "error",
 						title: "Oops...",
@@ -57,17 +71,6 @@ const Mp3FB = () => {
 							'<a href="https://wa.me/+2001102654851">Contact the owner?</a>',
 					});
 				}
-				response.data.requested_formats[1].resolution !== "audio only" &&
-					setIsError(true);
-			})
-			.catch(function (error) {
-				Swal.fire({
-					icon: "error",
-					title: "Oops...",
-					text: "Something went wrong!",
-					footer:
-						'<a href="https://wa.me/+2001102654851">Contact the owner?</a>',
-				});
 			});
 	};
 	useEffect(() => {

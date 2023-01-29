@@ -5,7 +5,7 @@ const Insta = () => {
 	return (
 		<div className="Insta row">
 			<h1 className="text-center">I'm Still Working On It</h1>
-			<img className="img-fluid w-25" src={stillWorking} alt="" srcset="" />
+			<img className="img-fluid w-25" src={stillWorking} alt="" srcSet="" />
 			{/* <div
 				id="carouselExampleAutoplaying"
 				className="carousel slide col h-50 d-flex justify-content-center align-items-center"

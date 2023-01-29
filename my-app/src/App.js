@@ -45,8 +45,8 @@ const App = () => {
 							<Route path="mp4" element={<Mp4YT />} />
 							<Route path="mp3" element={<Mp3YT />} />
 						</Route>
-						{/* <Route path="/" element={<Insta />} /> */}
-						<Route path="/" element={<SelectPlan />} />
+						<Route path="/" element={<Insta />} />
+						{/* <Route path="/" element={<SelectPlan />} /> */}
 					</Routes>
 				</div>
 				<Footer />
