@@ -41,6 +41,7 @@
 		font-size: 16px;
 	}
 }
+
 .face:hover {
 	color: #4267b2 !important;
 }
@@ -50,6 +51,7 @@
 .youTube:hover {
 	color: #ff0000 !important;
 }
+
 .plans {
 	font-size: 1em;
 }

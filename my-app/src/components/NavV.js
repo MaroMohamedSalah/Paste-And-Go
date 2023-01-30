@@ -46,19 +46,21 @@ const NavV = () => {
 			instagram.style.color = "#c13584";
 			facebook.style.color = "var(--Pewter)";
 			youTube.style.color = "var(--Pewter)";
-			setActive(instagram.id);
+			instagram.click();
+			// setActive(instagram.id);
 		};
 		facebook.onclick = () => {
 			facebook.style.color = "#4267b2";
 			instagram.style.color = "var(--Pewter)";
 			youTube.style.color = "var(--Pewter)";
-			setActive(facebook.id);
+			facebook.click();
+			// setActive(facebook.id);
 		};
 		youTube.onclick = () => {
 			youTube.style.color = "#ff0000";
 			instagram.style.color = "var(--Pewter)";
 			facebook.style.color = "var(--Pewter)";
-			setActive(youTube.id);
+			youTube.click();
 		};
 		document.querySelectorAll("#socialMediaList a")[active].click();
 	}, [active]);

@@ -6,6 +6,9 @@
 	align-items: center;
 	flex-direction: column;
 }
+.InstaStory {
+	height: 75%;
+}
 .media {
 	position: relative;
 	width: 50%;
@@ -36,6 +39,7 @@
 	z-index: 100;
 	outline: none;
 	caret-color: var(--Yellow);
+	color: var(--Pewter);
 }
 .media input:focus ~ label,
 .media input:valid ~ label {
