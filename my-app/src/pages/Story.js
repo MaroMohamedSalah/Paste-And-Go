@@ -160,27 +160,29 @@ const Story = () => {
 							) : (
 								stories.response.body.reels_media[0].items.map((s, i) => {
 									return (
-										<a
-											key={i}
-											href={s.video_versions[0].url}
-											rel="noopener noreferrer"
-											target="_blank"
-											className="btn col-3 m-2 w-100"
-											onClick={(e) => {
-												setStep(2);
-												Swal.fire({
-													position: "top-end",
-													icon: "success",
-													title: "Your Reel has been downloaded",
-													showConfirmButton: false,
-													timer: 1500,
-												});
-											}}
-										>
-											<h5 className="z-3 position-relative">
-												View & Download Story Number: {i + 1}
-											</h5>
-										</a>
+										"video_versions" in s && (
+											<a
+												key={i}
+												href={s.video_versions[0].url}
+												rel="noopener noreferrer"
+												target="_blank"
+												className="btn col-3 mt-2 mb-2 w-100"
+												onClick={(e) => {
+													setStep(2);
+													Swal.fire({
+														position: "top-end",
+														icon: "success",
+														title: "Your Reel has been downloaded",
+														showConfirmButton: false,
+														timer: 1500,
+													});
+												}}
+											>
+												<h5 className="z-3 position-relative">
+													View & Download Story Number: {i + 1}
+												</h5>
+											</a>
+										)
 									);
 								})
 							)}
