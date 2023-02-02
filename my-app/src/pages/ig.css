@@ -1,5 +1,41 @@
 .IG {
 }
+
+.IG ul li,
+.IG p h1 {
+	font-size: 1.5em;
+	color: var(--LightBlueGray);
+	width: 100%;
+	text-align: start;
+	margin: 10px;
+}
+.IG .error {
+	font-size: 1em;
+	color: var(--LightBlueGray);
+}
+.IG ul li span,
+.IG .placeholder-glow span {
+	color: var(--Yellow);
+}
+.IG .data {
+	min-height: 50vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	min-height: 10vh;
+}
+.IG ul {
+	display: flex;
+	align-items: start;
+	flex-direction: column;
+}
+.Reels .caption {
+	font-size: 2em;
+	color: var(--Yellow);
+}
+/* .IG {
+}
 .IG h1,
 .Reels ul li {
 	font-size: 1.5em;
@@ -33,4 +69,4 @@
 }
 .Reels .data {
 	min-height: 10vh;
-}
+} */

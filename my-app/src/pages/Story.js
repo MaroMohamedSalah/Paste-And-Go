@@ -6,134 +6,186 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import Steps from "../Atoms/Steps";
 const Story = () => {
-	const [userName, setUserName] = useRecoilState(UserNameIG);
+	const [username, setUserName] = useRecoilState(UserNameIG);
 	const [step, setStep] = useRecoilState(Steps);
 	const [stories, setStories] = useState([]);
-	// const downloadLink = () => {
-	// 	const options = {
-	// 		method: "GET",
-	// 		url: "https://instagram-story-downloader-media-downloader.p.rapidapi.com/story/index",
-	// 		params: { url: userName },
-	// 		headers: {
-	// 			"X-RapidAPI-Key": "0359bd5187msh1d9d91398b35961p168041jsn1ba3b053ae5b",
-	// 			"X-RapidAPI-Host":
-	// 				"instagram-story-downloader-media-downloader.p.rapidapi.com",
-	// 			"Access-Control-Allow-Origin": "*",
-	// 			"Access-Control-Allow-Headers": "*",
-	// 			"Access-Control-Allow-Credentials": "true",
-	// 			Vary: "Origin",
-	// 		},
-	// 	};
+	const [id, setID] = useState("");
 
-	// 	axios
-	// 		.request(options)
-	// 		.then(function (response) {
-	// 			if (response.status === 200) {
-	// 				response.data.Status === "Error"
-	// 					? Swal.fire({
-	// 							icon: "error",
-	// 							title: "Oops...",
-	// 							text: response.data.Msg,
-	// 							footer:
-	// 								'<a href="https://wa.me/+2001102654851">Contact the owner?</a>',
-	// 					  })
-	// 					: setStories(response.data);
-	// 			} else {
-	// 				Swal.fire({
-	// 					icon: "error",
-	// 					title: "Oops...",
-	// 					text: "Something went wrong!",
-	// 					footer:
-	// 						'<a href="https://wa.me/+2001102654851">Contact the owner?</a>',
-	// 				});
-	// 			}
-	// 		})
-	// 		.catch(function (error) {
-	// 			if (error.request.readyState === 4) {
-	// 				Swal.fire({
-	// 					icon: "error",
-	// 					title: "Oops...",
-	// 					text: "Server Error!",
-	// 					footer:
-	// 						'<a href="https://wa.me/+2001102654851">Contact the owner?</a>',
-	// 				});
-	// 			} else {
-	// 				Swal.fire({
-	// 					icon: "error",
-	// 					title: "Oops...",
-	// 					text: "Something went wrong!",
-	// 					footer:
-	// 						'<a href="https://wa.me/+2001102654851">Contact the owner?</a>',
-	// 				});
-	// 			}
-	// 		});
-	// };
-	const downloadLink = () => {
+	const getUserID = () => {
 		const options = {
 			method: "GET",
+			url: `https://instagram174.p.rapidapi.com/api/v1/user/${username}/id`,
 			headers: {
 				"X-RapidAPI-Key": "0359bd5187msh1d9d91398b35961p168041jsn1ba3b053ae5b",
-				"X-RapidAPI-Host":
-					"instagram-story-downloader-media-downloader.p.rapidapi.com",
-				"Access-Control-Allow-Origin": "*",
-				"Access-Control-Allow-Headers": "*",
-				"Access-Control-Allow-Credentials": "true",
+				"X-RapidAPI-Host": "instagram174.p.rapidapi.com",
 			},
 		};
 
-		fetch(
-			`https://instagram-story-downloader-media-downloader.p.rapidapi.com/story/index?url=${userName}`,
-			options
-		)
-			.then((response) => response.json())
-			.then((response) => setStories(response))
-			.catch((err) => console.error(err));
+		axios
+			.request(options)
+			.then(function (response) {
+				response.data.status === "ok"
+					? setID(response.data.result)
+					: Swal.fire({
+							icon: "error",
+							title: "Oops...",
+							text: "User Not Found!",
+							footer:
+								'<a href="https://wa.me/+2001102654851">Contact the owner?</a>',
+					  });
+			})
+			.catch(function (error) {
+				console.error(error);
+			});
+	};
+
+	const downloadLink = () => {
+		const options = {
+			method: "POST",
+			url: "https://rocketapi-for-instagram.p.rapidapi.com/instagram/user/get_stories",
+			headers: {
+				"content-type": "application/json",
+				"X-RapidAPI-Key": "0359bd5187msh1d9d91398b35961p168041jsn1ba3b053ae5b",
+				"X-RapidAPI-Host": "rocketapi-for-instagram.p.rapidapi.com",
+			},
+			data: `{"ids":[${id}]}`,
+		};
+		axios
+			.request(options)
+			.then(function (response) {
+				if (response.status === 200) {
+					// console.log(
+					// 	response.data.response.body.reels_media[0].items[0].video_versions
+					// );
+					setStories(response.data);
+				} else {
+					Swal.fire({
+						icon: "error",
+						title: "Oops...",
+						text: "Something went wrong!",
+						footer:
+							'<a href="https://wa.me/+2001102654851">Contact the owner?</a>',
+					});
+				}
+			})
+			.catch(function (error) {
+				if (error.request.readyState === 4) {
+					Swal.fire({
+						icon: "error",
+						title: "Oops...",
+						text: "Server Error!",
+						footer:
+							'<a href="https://wa.me/+2001102654851">Contact the owner?</a>',
+					});
+				} else {
+					Swal.fire({
+						icon: "error",
+						title: "Oops...",
+						text: "Something went wrong!",
+						footer:
+							'<a href="https://wa.me/+2001102654851">Contact the owner?</a>',
+					});
+				}
+			});
 	};
 	useEffect(() => {
-		downloadLink();
-	}, []);
+		getUserID();
+		id !== "" && downloadLink();
+	}, [id]);
 	return (
-		<div className="Story IG">
-			<h1 className="text-center">
-				<span>{stories.length !== 0 && stories.stories.length}</span> stories
-				are ready to download from <span>{userName}</span>!
-			</h1>
+		<div className="stories IG">
+			{stories.length === 0 ? (
+				<p className="m-5 placeholder-glow">
+					<h1>
+						Username: <span className="placeholder col-5"></span>
+					</h1>
+					<h1>
+						Full Name: <span className="placeholder col-5"></span>
+					</h1>
+					<h1>
+						Views: <span className="placeholder col-5"></span>
+					</h1>
+					<h1>
+						Likes: <span className="placeholder col-5"></span>
+					</h1>
+					<h1 className="placeholder col-7"></h1>
+				</p>
+			) : (
+				stories.response.body.reels_media.length !== 0 && (
+					<ul className="text-center">
+						<li>
+							Username:{" "}
+							<span>{stories.response.body.reels_media[0].user.username}</span>
+						</li>
+						<li>
+							Full Name:{" "}
+							<span>{stories.response.body.reels_media[0].user.full_name}</span>
+						</li>
+						<li>
+							Number Of Stories:{" "}
+							<span>{stories.response.body.reels_media[0].media_count}</span>
+						</li>
+						<li>
+							{stories.response.body.reels_media[0].user.is_private === true ? (
+								<span> Private </span>
+							) : (
+								<span> Public </span>
+							)}
+						</li>
+						<li>
+							{stories.response.body.reels_media[0].user.is_verified ===
+								true && (
+								<span>
+									{" "}
+									Verified <i class="fa-solid fa-certificate"></i>
+								</span>
+							)}
+						</li>
+					</ul>
+				)
+			)}
 			<div className="data d-flex justify-content-center align-items-center">
 				{stories.length === 0 ? (
 					<div className="spinner-border" role="status">
 						<span className="visually-hidden">Loading...</span>
 					</div>
 				) : (
-					stories.stories.map((s, i) => {
-						return (
-							<div className="downloadCard" key={i}>
-								<img
-									crossOrigin="anonymous"
-									// src={s.thumbnail}
-									src="https://instagram.fdel52-1.fna.fbcdn.net/v/t51.2885-19/281440578_1088265838702675_6233856337905829714_n.jpg?stp=dst-jpg_s150x150&_nc_ht=instagram.fdel52-1.fna.fbcdn.net&_nc_cat=1&_nc_ohc=YwdZ54Rm4WAAX9442RK&edm=AEF8tYYBAAAA&ccb=7-5&oh=00_AfB-KcgGBH7qt0jW3-5bT9Ay6m993xrW_Q0-jR3I5g0fBg&oe=63DF81D8&_nc_sid=a9513d"
-									alt="thumbnail"
-								/>
-								<a
-									href={s.media}
-									rel="noopener noreferrer"
-									target="_blank"
-									className="btn col-3 m-2 w-100"
-									onClick={(e) => {
-										setStep(2);
-										Swal.fire({
-											position: "top-end",
-											icon: "success",
-											title: "Your Story has been downloaded",
-											showConfirmButton: false,
-											timer: 1500,
-										});
-									}}
-								>
-									<h5 className="z-3 position-relative">Download MP3</h5>
-								</a>
-							</div>
-						);
-					})
+					<div className="downloadCard">
+						<div className="download-selection">
+							{stories.response.body.reels_media.length === 0 ? (
+								<h1 className="text-center error">
+									{" "}
+									This Username Does Not Have Any Videos In His Story
+								</h1>
+							) : (
+								stories.response.body.reels_media[0].items.map((s, i) => {
+									return (
+										<a
+											key={i}
+											href={s.video_versions[0].url}
+											rel="noopener noreferrer"
+											target="_blank"
+											className="btn col-3 m-2 w-100"
+											onClick={(e) => {
+												setStep(2);
+												Swal.fire({
+													position: "top-end",
+													icon: "success",
+													title: "Your Reel has been downloaded",
+													showConfirmButton: false,
+													timer: 1500,
+												});
+											}}
+										>
+											<h5 className="z-3 position-relative">
+												View & Download Story Number: {i + 1}
+											</h5>
+										</a>
+									);
+								})
+							)}
+						</div>
+					</div>
 				)}
 			</div>
 		</div>
