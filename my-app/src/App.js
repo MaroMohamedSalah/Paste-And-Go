@@ -11,7 +11,10 @@ import Mp3FB from "./pages/Mp3FB";
 import Mp4FB from "./pages/Mp4FB";
 import SelectPlan from "./components/SelectPlan";
 import InstaNav from "./components/InstaNav";
-import InstaStory from "./pages/InstaStory";
+import Story from "./pages/Story";
+import GetIGUser from "./components/GetIGUser";
+import GetReelsURL from "./components/GetReelsURL";
+import ReelsMP4 from "./pages/ReelsMP4";
 const App = () => {
 	localStorage.getItem("plan") === null && localStorage.setItem("plan", "FREE"); // set plan to FREE by default
 	return (
@@ -21,7 +24,6 @@ const App = () => {
 				<NavH />
 				<NavV />
 				<div className="Main col-lg-11 col-md-10 col">
-					{/* <InstaNav /> */}
 					<Routes>
 						<Route
 							path="facebook"
@@ -56,10 +58,32 @@ const App = () => {
 								</>
 							}
 						>
-							{/* <Route path="/" element={<Insta />} /> */}
-							<Route path="/" element={<InstaStory />} />
-							<Route path="video" element={<h1>video</h1>} />
-							<Route path="info" element={<h1>Info</h1>} />
+							<Route
+								path="/"
+								element={
+									<>
+										<Outlet />
+									</>
+								}
+							>
+								<Route path="" element={<GetIGUser />} />
+								<Route path="story" element={<Story />} />
+							</Route>
+							<Route
+								path="reels"
+								element={
+									<>
+										<Outlet />
+									</>
+								}
+							>
+								<Route path="" element={<GetReelsURL />} />
+								<Route path="reelsMP4" element={<ReelsMP4 />} />
+							</Route>
+							<Route
+								path="info"
+								element={<h1 className="text-center">Info</h1>}
+							/>
 						</Route>
 						{/* <Route path="/" element={<SelectPlan />} /> */}
 					</Routes>

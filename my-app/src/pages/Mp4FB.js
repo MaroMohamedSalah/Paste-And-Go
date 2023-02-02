@@ -101,7 +101,7 @@ const Mp4FB = () => {
 						</div>
 						<div className="download-selection w-100 justify-content-center row">
 							<a
-								href={data.requested_formats[1].url}
+								href={data.formats[3].url}
 								rel="noopener noreferrer"
 								target="_blank"
 								className="btn col-3 m-2 w-100"
@@ -124,7 +124,7 @@ const Mp4FB = () => {
 										});
 								}}
 							>
-								<h5 className="z-3 position-relative">Download MP3</h5>
+								<h5 className="z-3 position-relative">Download HD video</h5>
 							</a>
 						</div>
 					</div>

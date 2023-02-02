@@ -24,7 +24,7 @@ const InstaNav = () => {
 				</div>
 				<li>Stories</li>
 			</Link>
-			<Link to={"./video"}>
+			<Link to={"./reels"}>
 				<div className="icon">
 					<i className="fa-solid fa-play"></i>
 				</div>

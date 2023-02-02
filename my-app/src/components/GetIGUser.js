@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./URLgetter.css";
-import "./download.css";
+import "../pages/URLgetter.css";
+import "../pages/download.css";
 import { useRecoilState } from "recoil";
 import YtId from "../Atoms/YtId";
 import Steps from "../Atoms/Steps";
 import UserNameIG from "../Atoms/UserNameIG";
 import Swal from "sweetalert2";
-const InstaStory = () => {
+const GetIGUser = () => {
 	const [step, setStep] = useRecoilState(Steps);
 	const [userName, setUserName] = useRecoilState(UserNameIG);
 	const [valid, setValid] = useState("");
@@ -16,14 +16,14 @@ const InstaStory = () => {
 		if (e.length !== 0) {
 			let v = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/gim.test(e);
 			v === true ? setValid("yes") : setValid("no");
-			valid === "yes" && setUserName(e);
+			v === true && setUserName(e);
 		} else {
 			setValid("empty");
 		}
 	};
 	useEffect(() => {
-		const formatsBtns = document.querySelectorAll(".InstaStory form div");
-		const UrlInput = document.querySelector(".InstaStory form input");
+		const formatsBtns = document.querySelectorAll(".GetIGUser form div");
+		const UrlInput = document.querySelector(".GetIGUser form input");
 		UrlInput.value.length === 0 && setStep(null);
 		valid === "no" || valid === "empty"
 			? (UrlInput.style.borderColor = "#ff3333")
@@ -45,9 +45,9 @@ const InstaStory = () => {
 				setStep(null);
 			}
 		});
-	}, [valid]);
+	}, [valid, userName]);
 	return (
-		<div className="InstaStory urlGetter">
+		<div className="GetIGUser urlGetter">
 			<form className="instaStory-url media row w-lg-50 w-md-50 w-sm-90">
 				<input
 					type="text"
@@ -70,12 +70,12 @@ const InstaStory = () => {
 					{error} &#128578;
 				</h3>
 				<div className="MP3 col-lg-6 col-12 p-sm-5">
-					<Link to={"mp4"} onClick={() => setStep(1)}>
+					<Link to={""} onClick={() => setStep(1)}>
 						<button type="submit">Highlights</button>
 					</Link>
 				</div>
 				<div className="MP4 col-lg-6 col-12 p-sm-5">
-					<Link to={"mp4"} onClick={() => setStep(1)}>
+					<Link to={"story"} onClick={() => setStep(1)}>
 						<button type="submit">Stories</button>
 					</Link>
 				</div>
@@ -83,4 +83,4 @@ const InstaStory = () => {
 		</div>
 	);
 };
-export default InstaStory;
+export default GetIGUser;

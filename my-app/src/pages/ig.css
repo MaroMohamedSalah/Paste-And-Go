@@ -1,0 +1,36 @@
+.IG {
+}
+.IG h1,
+.Reels ul li {
+	font-size: 1.5em;
+	color: var(--LightBlueGray);
+}
+.IG h1 span,
+.Reels ul li span {
+	color: var(--Yellow);
+}
+.IG .data {
+	min-height: 50vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.Reels ul {
+	display: flex;
+	align-items: start;
+	flex-direction: column;
+}
+.Reels ul li {
+	width: 100%;
+	text-align: start;
+	margin: 10px;
+}
+.Reels .caption {
+	font-size: 2em;
+	color: var(--Yellow);
+}
+.Reels .data {
+	min-height: 10vh;
+}

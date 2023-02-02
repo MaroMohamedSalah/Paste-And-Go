@@ -28,3 +28,9 @@
 	font-size: 1.5em;
 	color: var(--BlueGray);
 }
+
+@media only screen and (max-width: 768px) {
+	.instaOptions a li {
+		font-size: 1em;
+	}
+}
