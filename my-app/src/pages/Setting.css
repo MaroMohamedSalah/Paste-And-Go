@@ -6,7 +6,7 @@
 	color: var(--DarkBlue);
 }
 .Setting ul {
-	flex-direction: row !important;
+	flex-direction: row;
 }
 .Setting ul li {
 	position: relative;

@@ -1,0 +1,31 @@
+.offcanvas-header .yourPlan {
+	margin: 6px;
+	font-size: 1.2em;
+	color: var(--DarkBlueLight);
+	font-weight: 700;
+}
+.offcanvas-header .edit {
+	font-size: 0.75em;
+	color: var(--Pewter);
+	transition: all 0.5s ease-in-out;
+	cursor: pointer;
+}
+.offcanvas-header .edit:hover {
+	color: var(--Yellow);
+}
+.limits li {
+	pointer-events: none;
+}
+.limits li span {
+	color: var(--Yellow);
+	margin: 10px;
+	font-weight: 700;
+}
+.plans-body h1 {
+}
+@media only screen and (max-width: 768px) {
+	.limits {
+		flex-direction: column !important;
+		margin-top: 20px;
+	}
+}

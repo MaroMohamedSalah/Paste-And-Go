@@ -9,7 +9,6 @@ import Mp3YT from "./pages/Mp3YT";
 import Mp4YT from "./pages/Mp4YT";
 import Mp3FB from "./pages/Mp3FB";
 import Mp4FB from "./pages/Mp4FB";
-import SelectPlan from "./components/SelectPlan";
 import InstaNav from "./components/InstaNav";
 import Story from "./pages/Story";
 import GetIGUser from "./components/GetIGUser";
@@ -85,7 +84,7 @@ const App = () => {
 								element={<h1 className="text-center">Info</h1>}
 							/>
 						</Route>
-						{/* <Route path="/" element={<SelectPlan />} /> */}
+						{/* <Route path="selectPlan" element={<SelectPlan />} /> */}
 					</Routes>
 				</div>
 				<Footer />

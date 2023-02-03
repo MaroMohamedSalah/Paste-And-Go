@@ -2,7 +2,7 @@ import { atom } from "recoil";
 
 const Plan = atom({
 	key: "Plan",
-	default: "",
+	default: localStorage.getItem("plan"),
 });
 
 export default Plan;
