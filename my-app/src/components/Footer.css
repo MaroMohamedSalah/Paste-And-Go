@@ -2,7 +2,34 @@
 	height: 14vh;
 	background-color: var(--LightBlueGray);
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	color: var(--DarkBlue);
+	overflow: hidden;
+}
+.Footer h2 {
+	font-size: 1.5em;
+}
+.Footer h2 span {
+	color: var(--Yellow);
+	font-weight: 600;
+}
+.Footer .social {
+	display: flex;
+	width: 50%;
+	justify-content: space-evenly;
+	align-items: center;
+	list-style: none;
+}
+.Footer .social li {
+	cursor: pointer;
+}
+.Footer .social li a {
+	font-size: 1.5em;
+	color: var(--DarkBlue);
+	transition: all 0.5s ease-in-out;
+}
+.Footer .social li:hover a {
+	color: var(--Yellow);
 }
