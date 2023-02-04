@@ -28,19 +28,28 @@ const Mp4FB = () => {
 	const downloadLink = () => {
 		const options = {
 			method: "GET",
-			url: "https://aiov-download-youtube-videos.p.rapidapi.com/GetVideoDetails",
-			params: { URL: url },
+			url: "https://facebook-reel-and-video-downloader.p.rapidapi.com/app/main.php",
+			params: { url: url },
 			headers: {
 				"X-RapidAPI-Key": "0359bd5187msh1d9d91398b35961p168041jsn1ba3b053ae5b",
-				"X-RapidAPI-Host": "aiov-download-youtube-videos.p.rapidapi.com",
+				"X-RapidAPI-Host": "facebook-reel-and-video-downloader.p.rapidapi.com",
 			},
 		};
 
 		axios
 			.request(options)
 			.then(function (response) {
+				console.log(Object.entries(response.data.links));
 				if (response.status === 200) {
-					setData(response.data);
+					response.data.success === true
+						? setData(response.data)
+						: Swal.fire({
+								icon: "error",
+								title: "Oops...",
+								text: "Server Error!",
+								footer:
+									'<a href="https://wa.me/+2001102654851">Contact the owner?</a>',
+						  });
 				} else {
 					Swal.fire({
 						icon: "error",
@@ -50,8 +59,6 @@ const Mp4FB = () => {
 							'<a href="https://wa.me/+2001102654851">Contact the owner?</a>',
 					});
 				}
-				response.data.requested_formats[1].resolution !== "audio only" &&
-					setIsError(true);
 			})
 			.catch(function (error) {
 				if (error.request.readyState === 4) {
@@ -93,39 +100,39 @@ const Mp4FB = () => {
 							/>
 							<div className="des col-md-6 col-lg-6 col d-flex justify-content-between flex-column">
 								<div className="title fs-3">{data.title}</div>
-								<ul className="info" aria-hidden="true">
-									<li>Duration: {data.duration_string}</li>
-									<li>By: {data.uploader}</li>
-								</ul>
 							</div>
 						</div>
 						<div className="download-selection w-100 justify-content-center row">
-							<a
-								href={data.formats[3].url}
-								rel="noopener noreferrer"
-								target="_blank"
-								className="btn col-3 m-2 w-100"
-								onClick={(e) => {
-									data.status === "fail" && e.preventDefault();
-									data.status === "fail"
-										? Swal.fire({
-												icon: "error",
-												title: "Oops...",
-												text: "Long audio of more than 2 hr duration are not allowed",
-										  })
-										: setStep(2);
-									data.status !== "fail" &&
-										Swal.fire({
-											position: "top-end",
-											icon: "success",
-											title: "Your MP3 has been downloaded",
-											showConfirmButton: false,
-											timer: 1500,
-										});
-								}}
-							>
-								<h5 className="z-3 position-relative">Download HD video</h5>
-							</a>
+							{Object.entries(data.links).map((link) => {
+								return (
+									<a
+										href={link[1]}
+										rel="noopener noreferrer"
+										target="_blank"
+										className="btn col-3 m-2 w-100"
+										onClick={(e) => {
+											data.status === "fail" && e.preventDefault();
+											data.status === "fail"
+												? Swal.fire({
+														icon: "error",
+														title: "Oops...",
+														text: "Long audio of more than 2 hr duration are not allowed",
+												  })
+												: setStep(2);
+											data.status !== "fail" &&
+												Swal.fire({
+													position: "top-end",
+													icon: "success",
+													title: "Your MP4 has been downloaded",
+													showConfirmButton: false,
+													timer: 1500,
+												});
+										}}
+									>
+										<h5 className="z-3 position-relative">{link[0]}</h5>
+									</a>
+								);
+							})}
 						</div>
 					</div>
 				) : (
