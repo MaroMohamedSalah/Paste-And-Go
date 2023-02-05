@@ -18,7 +18,6 @@ const App = () => {
 	localStorage.getItem("plan") === null && localStorage.setItem("plan", "FREE"); // set plan to FREE by default
 	return (
 		<div className="App row me-0">
-			{/* <SelectPlan /> */}
 			<BrowserRouter>
 				<NavH />
 				<NavV />
@@ -81,10 +80,15 @@ const App = () => {
 							</Route>
 							<Route
 								path="info"
-								element={<h1 className="text-center">Info</h1>}
-							/>
+								element={
+									<>
+										<Outlet />
+									</>
+								}
+							>
+								<Route path="" element={<GetIGUser />} />
+							</Route>
 						</Route>
-						{/* <Route path="selectPlan" element={<SelectPlan />} /> */}
 					</Routes>
 				</div>
 				<Footer />
