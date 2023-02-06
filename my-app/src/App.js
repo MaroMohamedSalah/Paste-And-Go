@@ -12,8 +12,10 @@ import Mp4FB from "./pages/Mp4FB";
 import InstaNav from "./components/InstaNav";
 import Story from "./pages/Story";
 import GetIGUser from "./components/GetIGUser";
+import GetIGUser2 from "./components/GetIGUser2";
 import GetReelsURL from "./components/GetReelsURL";
 import ReelsMP4 from "./pages/ReelsMP4";
+import GetInfo from "./pages/GetInfo";
 const App = () => {
 	localStorage.getItem("plan") === null && localStorage.setItem("plan", "FREE"); // set plan to FREE by default
 	return (
@@ -86,7 +88,8 @@ const App = () => {
 									</>
 								}
 							>
-								<Route path="" element={<GetIGUser />} />
+								<Route path="" element={<GetIGUser2 />} />
+								<Route path="getInfo" element={<GetInfo />} />
 							</Route>
 						</Route>
 					</Routes>

@@ -54,9 +54,6 @@ const Story = () => {
 			.request(options)
 			.then(function (response) {
 				if (response.status === 200) {
-					// console.log(
-					// 	response.data.response.body.reels_media[0].items[0].video_versions
-					// );
 					setStories(response.data);
 				} else {
 					Swal.fire({

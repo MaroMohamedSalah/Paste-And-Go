@@ -1,0 +1,25 @@
+.info .basicInfo li {
+	font-size: 1.5em;
+}
+.info .follow {
+	list-style: none;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+}
+.info .follow li {
+	padding: 10px;
+	border-radius: 5px;
+	border: 2px solid var(--Yellow);
+}
+.secondaryInfo {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row !important;
+}
+
+@media only screen and (max-width: 768px) {
+	.secondaryInfo li {
+		flex-direction: column !important;
+	}
+}
