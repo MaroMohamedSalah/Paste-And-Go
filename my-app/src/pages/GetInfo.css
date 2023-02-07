@@ -1,13 +1,15 @@
 .info .basicInfo li {
 	font-size: 1.5em;
 }
-.info .follow {
+.info .follow,
+.info .profile {
 	list-style: none;
 	display: flex;
 	justify-content: space-between;
 	flex-direction: row;
 }
-.info .follow li {
+.info .follow li,
+.info .profile li {
 	padding: 10px;
 	border-radius: 5px;
 	border: 2px solid var(--Yellow);
@@ -15,11 +17,38 @@
 .secondaryInfo {
 	display: flex;
 	justify-content: space-between;
-	flex-direction: row !important;
+	flex-direction: row;
+}
+.bio h3 {
+	font-size: 2em;
+	color: var(--BlueGray);
 }
 
+.bio p,
+.bio a {
+	font-size: 1.5em;
+	color: var(--Yellow);
+	transition: all 0.2s ease-in-out;
+}
+.bio a i {
+	color: var(--BlueGray);
+	font-size: 0.5em;
+}
+.bio a:hover {
+	color: var(--Pewter);
+}
 @media only screen and (max-width: 768px) {
+	.info .basicInfo li {
+		font-size: 1em;
+	}
+	.info .follow li {
+		height: 75px;
+		font-size: 1em;
+	}
+	.secondaryInfo {
+		flex-direction: column;
+	}
 	.secondaryInfo li {
-		flex-direction: column !important;
+		font-size: 1em !important;
 	}
 }

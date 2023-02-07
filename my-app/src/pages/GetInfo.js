@@ -59,7 +59,7 @@ const GetInfo = () => {
 		downloadLink();
 	}, []);
 	return (
-		<div className="info IG d-none">
+		<div className="info IG">
 			{info.length === 0 ? (
 				<div className="loading d-flex justify-content-center align-items-center">
 					<div className="spinner-border" role="status">
@@ -68,7 +68,7 @@ const GetInfo = () => {
 				</div>
 			) : (
 				<>
-					<ul className="basicInfo m-5">
+					<ul className="basicInfo m-md-5 m-0">
 						<li>
 							Username: <span>{info[0].username}</span>
 						</li>
@@ -79,7 +79,7 @@ const GetInfo = () => {
 							Category: <span>{info[0].category}</span>
 						</li>
 					</ul>
-					<ul className="follow m-5 ">
+					<ul className="follow m-md-5 m-0 ">
 						<li>
 							Followers:{" "}
 							<span>
@@ -152,6 +152,55 @@ const GetInfo = () => {
 								</span>
 							</li>
 						)}
+					</ul>
+					<div className="bio m-5">
+						<h3>Bio:</h3>
+						<p>{info[0].biography}</p>
+					</div>
+					<div className="bio m-5">
+						<h3>External Link:</h3>
+						<p>
+							<a
+								className="text-decoration-none"
+								href={info[0].external_lynx_url}
+								target={"_blank"}
+								rel="noreferrer"
+							>
+								Here <i className="fa-solid fa-link"></i>
+							</a>
+						</p>
+					</div>
+					<ul className="basicInfo m-5">
+						<li>
+							Highlights Count: <span>{info[0].highlight_reel_count}</span>
+						</li>
+						<li>
+							Media Count: <span>{info[0].media_count}</span>
+						</li>
+					</ul>
+					<h3 className="m-5">View & Download profile pic</h3>
+					<ul className="profile m-md-5 m-0 ">
+						<li>
+							Followers:{" "}
+							<span>
+								{info[0].follower_count > 1000
+									? Math.round(info[0].follower_count / 1000)
+									: info[0].follower_count}
+							</span>
+							{info[0].follower_count > 1000 && " K"}
+						</li>
+						<li>
+							Following:{" "}
+							<span>
+								{" "}
+								<span>
+									{info[0].following_count > 1000
+										? Math.round(info[0].following_count / 1000)
+										: info[0].following_count}
+								</span>
+								{info[0].following_count > 1000 && " K"}
+							</span>
+						</li>
 					</ul>
 				</>
 			)}
