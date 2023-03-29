@@ -12,6 +12,9 @@
 - Retrieve user information by username
 - Download user stories
 
-## Installation
+## Usage
 
-To install "Paste & Go", simply clone or download the project from the GitHub repository:
+To use "Paste & Go", simply visit the app URL in your web browser:
+
+```bash
+http://pasteandgo.surge.sh/
