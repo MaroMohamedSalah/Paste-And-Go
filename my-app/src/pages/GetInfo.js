@@ -178,30 +178,18 @@ const GetInfo = () => {
 							Media Count: <span>{info[0].media_count}</span>
 						</li>
 					</ul>
-					<h3 className="m-5">View & Download profile pic</h3>
-					<ul className="profile m-md-5 m-0 ">
-						<li>
-							Followers:{" "}
-							<span>
-								{info[0].follower_count > 1000
-									? Math.round(info[0].follower_count / 1000)
-									: info[0].follower_count}
-							</span>
-							{info[0].follower_count > 1000 && " K"}
-						</li>
-						<li>
-							Following:{" "}
-							<span>
-								{" "}
-								<span>
-									{info[0].following_count > 1000
-										? Math.round(info[0].following_count / 1000)
-										: info[0].following_count}
-								</span>
-								{info[0].following_count > 1000 && " K"}
-							</span>
-						</li>
-					</ul>
+					<div className="d-flex justify-content-center align-items-center w-100 my-5">
+						<a
+							href={info[0].profile_pic_url_hd}
+							target="_blank"
+							rel="noopener noreferrer"
+							className="link"
+						>
+							<button className="btn btn-primary picBtn">
+								View & Download profile pic
+							</button>
+						</a>
+					</div>
 				</>
 			)}
 		</div>

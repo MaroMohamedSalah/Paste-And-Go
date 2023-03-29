@@ -37,6 +37,19 @@
 .bio a:hover {
 	color: var(--Pewter);
 }
+.info a .picBtn {
+	background-color: var(--Yellow);
+	color: var(--DarkBlue);
+	font-size: 18px;
+	font-weight: 600;
+}
+.info a .picBtn:hover {
+	background-color: var(--DarkBlue);
+	color: var(--Yellow);
+}
+.info a {
+	text-decoration: none;
+}
 @media only screen and (max-width: 768px) {
 	.info .basicInfo li {
 		font-size: 1em;

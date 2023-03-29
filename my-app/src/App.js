@@ -1,5 +1,12 @@
 import "./App.css";
-import { BrowserRouter, Outlet, Route, Router, Routes } from "react-router-dom";
+import {
+	BrowserRouter,
+	HashRouter,
+	Outlet,
+	Route,
+	Router,
+	Routes,
+} from "react-router-dom";
 import NavH from "./components/NavH";
 import NavV from "./components/NavV";
 import Footer from "./components/Footer";
