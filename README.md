@@ -15,6 +15,3 @@
 ## Installation
 
 To install "Paste & Go", simply clone or download the project from the GitHub repository:
-
-```bash
-git clone https://github.com/MaroMohamedSalah/paste-and-go.git
