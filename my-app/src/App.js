@@ -27,10 +27,11 @@ const App = () => {
 	localStorage.getItem("plan") === null && localStorage.setItem("plan", "FREE"); // set plan to FREE by default
 	return (
 		<div className="App row me-0">
-			<BrowserRouter>
+			<HashRouter>
+				{/* <BrowserRouter> */}
 				<NavH />
 				<NavV />
-				<div className="Main col-lg-11 col-md-10 col">
+				<div className="Main col-lg-11 col-md-10 col overflow-hidden">
 					<Routes>
 						<Route
 							path="facebook"
@@ -102,7 +103,8 @@ const App = () => {
 					</Routes>
 				</div>
 				<Footer />
-			</BrowserRouter>
+				{/* </BrowserRouter> */}
+			</HashRouter>
 		</div>
 	);
 };

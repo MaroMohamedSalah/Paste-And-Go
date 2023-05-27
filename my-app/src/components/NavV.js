@@ -80,11 +80,9 @@ const NavV = () => {
 	}, [clickCount]);
 	return (
 		<div
-			className={
-				clickCount === 0
-					? "Nav-v col-lg-1 col-md-2 col-1 animate__headShake"
-					: "Nav-v col-lg-1 col-md-2 col-3"
-			}
+			className="Nav-v col-lg-1 col-md-2 col-1"
+			id="navbarScroll"
+			hide={clickCount === 0 ? "true" : "false"}
 		>
 			<div
 				className="drag d-md-none d-lg-none d-sm-block"
