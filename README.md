@@ -16,5 +16,5 @@
 
 To use "Paste & Go", simply visit the app URL in your web browser:
 
-```bash
-http://pasteandgo.surge.sh/
+## Project Link
+[Project Link](https://paste-and-go.web.app/#/)
