@@ -5,9 +5,9 @@ import Tooltip from "react-bootstrap/Tooltip";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import Active from "../Atoms/Active";
-import Setting from "../pages/Setting";
+import Setting from "./topOffcanvas/Setting";
 import "animate.css";
-import ShowPlans from "../pages/ShowPlans";
+import ShowPlans from "./topOffcanvas/ShowPlans";
 const NavV = () => {
 	const [active, setActive] = useRecoilState(Active);
 	const [clickCount, setClickCount] = useState(0);

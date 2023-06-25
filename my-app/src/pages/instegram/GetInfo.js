@@ -1,11 +1,11 @@
 import { useRecoilState } from "recoil";
-import UserNameIG from "../Atoms/UserNameIG";
+import UserNameIG from "../../Atoms/UserNameIG";
 import "./ig.css";
 import "./GetInfo.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import Steps from "../Atoms/Steps";
+import Steps from "../../Atoms/Steps";
 const GetInfo = () => {
 	const [username, setUserName] = useRecoilState(UserNameIG);
 	const [step, setStep] = useRecoilState(Steps);

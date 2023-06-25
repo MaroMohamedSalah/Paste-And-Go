@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import "./Setting.css";
 import "./plan.css";
-import plans from "../components/plans.json";
-import Plan from "../Atoms/Plan";
+import plans from "../plans.json";
+import Plan from "../../Atoms/Plan";
 import Swal from "sweetalert2";
 
 const ShowPlans = () => {

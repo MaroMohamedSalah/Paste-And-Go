@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import axios from "axios";
-import YtId from "../Atoms/YtId";
-import Steps from "../Atoms/Steps";
+import YtId from "../../Atoms/YtId";
+import Steps from "../../Atoms/Steps";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
 

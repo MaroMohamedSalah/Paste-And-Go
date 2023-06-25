@@ -10,25 +10,24 @@ import {
 import NavH from "./components/NavH";
 import NavV from "./components/NavV";
 import Footer from "./components/Footer";
-import FaceBook from "./pages/Facebook";
-import YouTube from "./pages/YouTube";
-import Mp3YT from "./pages/Mp3YT";
-import Mp4YT from "./pages/Mp4YT";
-import Mp3FB from "./pages/Mp3FB";
-import Mp4FB from "./pages/Mp4FB";
+import FaceBook from "./pages/facebook/Facebook";
+import YouTube from "./pages/youtube/YouTube";
+import Mp3YT from "./pages/youtube/Mp3YT";
+import Mp4YT from "./pages/youtube/Mp4YT";
+import Mp3FB from "./pages/facebook/Mp3FB";
+import Mp4FB from "./pages/facebook/Mp4FB";
 import InstaNav from "./components/InstaNav";
-import Story from "./pages/Story";
+import Story from "./pages/instegram/Story";
 import GetIGUser from "./components/GetIGUser";
 import GetIGUser2 from "./components/GetIGUser2";
 import GetReelsURL from "./components/GetReelsURL";
-import ReelsMP4 from "./pages/ReelsMP4";
-import GetInfo from "./pages/GetInfo";
+import ReelsMP4 from "./pages/instegram/ReelsMP4";
+import GetInfo from "./pages/instegram/GetInfo";
 const App = () => {
 	localStorage.getItem("plan") === null && localStorage.setItem("plan", "FREE"); // set plan to FREE by default
 	return (
 		<div className="App row me-0">
 			<HashRouter>
-				{/* <BrowserRouter> */}
 				<NavH />
 				<NavV />
 				<div className="Main col-lg-11 col-md-10 col overflow-hidden">
@@ -103,7 +102,6 @@ const App = () => {
 					</Routes>
 				</div>
 				<Footer />
-				{/* </BrowserRouter> */}
 			</HashRouter>
 		</div>
 	);

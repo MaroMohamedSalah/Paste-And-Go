@@ -1,34 +1,28 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./URLgetter.css";
-import "./download.css";
+import "../URLgetter.css";
+import "../download.css";
 import { useRecoilState } from "recoil";
-import YtId from "../Atoms/YtId";
-import Steps from "../Atoms/Steps";
-import Swal from "sweetalert2";
-const YouTube = () => {
+import YtId from "../../Atoms/YtId";
+import Steps from "../../Atoms/Steps";
+import FBurl from "../../Atoms/FBurl";
+const Facebook = () => {
 	const [step, setStep] = useRecoilState(Steps);
-	const [videoID, setVideoId] = useRecoilState(YtId);
+	const [url, setUrl] = useRecoilState(FBurl);
 	const [valid, setValid] = useState("");
 	const [error, setError] = useState("");
 	const handelValidURL = (e) => {
 		if (e.length !== 0) {
-			let v =
-				/(^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$)/gm.test(
-					e
-				);
+			let v = /^https?:\/\/(www\.facebook\.com|fb.watch)\/.+$/gm.test(e);
+			setUrl(e);
 			v === true ? setValid("yes") : setValid("no");
-			let id = e
-				.replace(/(>|<)/gi, "")
-				.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/)[2];
-			v === true && setVideoId(id);
 		} else {
 			setValid("empty");
 		}
 	};
 	useEffect(() => {
-		const formatsBtns = document.querySelectorAll(".Youtube form div");
-		const UrlInput = document.querySelector(".Youtube form input");
+		const formatsBtns = document.querySelectorAll(".Facebook form div");
+		const UrlInput = document.querySelector(".Facebook form input");
 		UrlInput.value.length === 0 && setStep(null);
 		valid === "no" || valid === "empty"
 			? (UrlInput.style.borderColor = "#ff3333")
@@ -41,7 +35,7 @@ const YouTube = () => {
 			} else if (valid === "no") {
 				element.style.opacity = "0";
 				element.style.pointerEvents = "none";
-				setError(`Invalid Youtube video URL`);
+				setError(`Invalid FaceBook video URL`);
 				setStep(null);
 			} else if (valid === "empty") {
 				setError("Can't be Empty");
@@ -50,21 +44,21 @@ const YouTube = () => {
 				setStep(null);
 			}
 		});
-	}, [valid, videoID]);
+	}, [valid]);
 	return (
-		<div className="Youtube urlGetter">
-			<form className="youtube-url media row w-lg-50 w-md-50 w-sm-90">
+		<div className="Facebook urlGetter">
+			<form className="facebook-url media row w-lg-50 w-md-50 w-sm-90">
 				<input
 					type="text"
-					id="youTube"
-					name="youTube"
+					id="facebook"
+					name="facebook"
 					className="col-12 "
 					required
 					onChange={(e) => {
 						handelValidURL(e.target.value);
 					}}
 				/>
-				<label htmlFor="youTube">YouTube URL</label>
+				<label htmlFor="facebook">Facebook URL</label>
 				<h3
 					className={
 						valid === "no" || valid === "empty"
@@ -88,4 +82,4 @@ const YouTube = () => {
 		</div>
 	);
 };
-export default YouTube;
+export default Facebook;

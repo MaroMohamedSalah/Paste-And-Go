@@ -1,10 +1,10 @@
 import { useRecoilState } from "recoil";
-import ReelsURL from "../Atoms/ReelsURL";
+import ReelsURL from "../../Atoms/ReelsURL";
 import "./ig.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import Steps from "../Atoms/Steps";
+import Steps from "../../Atoms/Steps";
 const ReelsMP4 = () => {
 	const [url, setUrl] = useRecoilState(ReelsURL);
 	const [step, setStep] = useRecoilState(Steps);

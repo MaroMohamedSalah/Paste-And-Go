@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import axios from "axios";
-import Steps from "../Atoms/Steps";
-import FBurl from "../Atoms/FBurl";
-import stillWorking from "../imgs/still working on it.gif";
+import Steps from "../../Atoms/Steps";
+import FBurl from "../../Atoms/FBurl";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
 

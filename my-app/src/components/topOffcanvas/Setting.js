@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
-import Active from "../Atoms/Active";
+import Active from "../../Atoms/Active";
 import "./Setting.css";
 
 const Setting = () => {
