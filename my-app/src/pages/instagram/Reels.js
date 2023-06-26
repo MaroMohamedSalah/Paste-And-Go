@@ -5,7 +5,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import Steps from "../../Atoms/Steps";
-const ReelsMP4 = () => {
+const Reels = () => {
 	const [url, setUrl] = useRecoilState(ReelsURL);
 	const [step, setStep] = useRecoilState(Steps);
 	const [reels, setReels] = useState([]);
@@ -148,4 +148,4 @@ const ReelsMP4 = () => {
 	);
 };
 
-export default ReelsMP4;
+export default Reels;

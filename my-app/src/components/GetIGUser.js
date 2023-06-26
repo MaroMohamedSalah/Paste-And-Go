@@ -5,7 +5,7 @@ import "../pages/download.css";
 import { useRecoilState } from "recoil";
 import Steps from "../Atoms/Steps";
 import UserNameIG from "../Atoms/UserNameIG";
-const GetIGUser = () => {
+const GetIGUser = ({ type }) => {
 	const [step, setStep] = useRecoilState(Steps);
 	const [userName, setUserName] = useRecoilState(UserNameIG);
 	const [valid, setValid] = useState("");
@@ -67,16 +67,26 @@ const GetIGUser = () => {
 				>
 					{error} &#128578;
 				</h3>
-				<div className="MP3 col-lg-6 col-12 p-sm-5">
-					<Link to={""} onClick={() => setStep(1)}>
-						<button type="submit">Highlights</button>
-					</Link>
-				</div>
-				<div className="MP4 col-lg-6 col-12 p-sm-5">
-					<Link to={"story"} onClick={() => setStep(1)}>
-						<button type="submit">Stories</button>
-					</Link>
-				</div>
+				{type === "story" ? (
+					<>
+						<div className="MP3 col-lg-6 col-12 p-sm-5">
+							<Link to={""} onClick={() => setStep(1)}>
+								<button type="submit">Highlights</button>
+							</Link>
+						</div>
+						<div className="MP4 col-lg-6 col-12 p-sm-5">
+							<Link to={"getStory"} onClick={() => setStep(1)}>
+								<button type="submit">Stories</button>
+							</Link>
+						</div>
+					</>
+				) : (
+					<div className="MP3 col p-sm-5">
+						<Link to={"getInfo"} onClick={() => setStep(1)}>
+							<button type="submit">Get User Info</button>
+						</Link>
+					</div>
+				)}
 			</form>
 		</div>
 	);

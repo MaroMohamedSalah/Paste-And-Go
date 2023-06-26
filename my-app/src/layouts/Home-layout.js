@@ -8,7 +8,9 @@ const HomeLayout = () => {
 		<>
 			<NavH />
 			<NavV />
-			<Outlet />
+			<div className="col-lg-11 col-md-10 col overflow-hidden">
+				<Outlet />
+			</div>
 			<Footer />
 		</>
 	);

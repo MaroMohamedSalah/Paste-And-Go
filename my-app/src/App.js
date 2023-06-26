@@ -1,108 +1,103 @@
 import "./App.css";
 import {
-	BrowserRouter,
-	HashRouter,
 	Outlet,
 	Route,
-	Router,
-	Routes,
+	RouterProvider,
+	createBrowserRouter,
+	createRoutesFromElements,
 } from "react-router-dom";
-import NavH from "./components/NavH";
-import NavV from "./components/NavV";
-import Footer from "./components/Footer";
-import FaceBook from "./pages/facebook/Facebook";
-import YouTube from "./pages/youtube/YouTube";
 import Mp3YT from "./pages/youtube/Mp3YT";
 import Mp4YT from "./pages/youtube/Mp4YT";
 import Mp3FB from "./pages/facebook/Mp3FB";
 import Mp4FB from "./pages/facebook/Mp4FB";
-import InstaNav from "./components/InstaNav";
-import Story from "./pages/instegram/Story";
+import Story from "./pages/instagram/Story";
 import GetIGUser from "./components/GetIGUser";
-import GetIGUser2 from "./components/GetIGUser2";
 import GetReelsURL from "./components/GetReelsURL";
-import ReelsMP4 from "./pages/instegram/ReelsMP4";
-import GetInfo from "./pages/instegram/GetInfo";
+import GetInfo from "./pages/instagram/GetInfo";
+import FacebookLayout from "./layouts/Facebook-layout";
+import HomeLayout from "./layouts/Home-layout";
+import YouTubeLayout from "./layouts/Youtube-layout";
+import InstagramLayout from "./layouts/Instagram-layout";
+import Reels from "./pages/instagram/Reels";
 const App = () => {
-	localStorage.getItem("plan") === null && localStorage.setItem("plan", "FREE"); // set plan to FREE by default
-	return (
-		<div className="App row me-0">
-			<HashRouter>
-				<NavH />
-				<NavV />
-				<div className="Main col-lg-11 col-md-10 col overflow-hidden">
-					<Routes>
+	const router = createBrowserRouter(
+		createRoutesFromElements(
+			<Route path="/" element={<HomeLayout />}>
+				<Route
+					path="facebook"
+					element={
+						<>
+							<Outlet />
+						</>
+					}
+				>
+					<Route path="" element={<FacebookLayout />} />
+					<Route path="mp4" element={<Mp4FB />} />
+					<Route path="mp3" element={<Mp3FB />} />
+				</Route>
+				<Route
+					path="youtube"
+					element={
+						<>
+							<Outlet />
+						</>
+					}
+				>
+					<Route path="" element={<YouTubeLayout />} />
+					<Route path="mp4" element={<Mp4YT />} />
+					<Route path="mp3" element={<Mp3YT />} />
+				</Route>
+				<Route
+					path="/"
+					element={
+						<>
+							<Outlet />
+						</>
+					}
+				>
+					<Route path="" element={<InstagramLayout />}>
 						<Route
-							path="facebook"
+							path="story"
 							element={
 								<>
 									<Outlet />
 								</>
 							}
 						>
-							<Route path="" element={<FaceBook />} />
-							<Route path="mp4" element={<Mp4FB />} />
-							<Route path="mp3" element={<Mp3FB />} />
-						</Route>
-						<Route
-							path="youtube"
-							element={
-								<>
-									<Outlet />
-								</>
-							}
-						>
-							<Route path="" element={<YouTube />} />
-							<Route path="mp4" element={<Mp4YT />} />
-							<Route path="mp3" element={<Mp3YT />} />
+							<Route path="" element={<GetIGUser type="story" />} />
+							<Route path="getStory" element={<Story />} />
 						</Route>
 						<Route
 							path="/"
 							element={
 								<>
-									<InstaNav />
 									<Outlet />
 								</>
 							}
 						>
-							<Route
-								path="/"
-								element={
-									<>
-										<Outlet />
-									</>
-								}
-							>
-								<Route path="" element={<GetIGUser />} />
-								<Route path="story" element={<Story />} />
-							</Route>
-							<Route
-								path="reels"
-								element={
-									<>
-										<Outlet />
-									</>
-								}
-							>
-								<Route path="" element={<GetReelsURL />} />
-								<Route path="reelsMP4" element={<ReelsMP4 />} />
-							</Route>
-							<Route
-								path="info"
-								element={
-									<>
-										<Outlet />
-									</>
-								}
-							>
-								<Route path="" element={<GetIGUser2 />} />
-								<Route path="getInfo" element={<GetInfo />} />
-							</Route>
+							<Route path="" element={<GetReelsURL />} />
+							<Route path="getReels" element={<Reels />} />
 						</Route>
-					</Routes>
-				</div>
-				<Footer />
-			</HashRouter>
+						<Route
+							path="info"
+							element={
+								<>
+									<Outlet />
+								</>
+							}
+						>
+							<Route path="" element={<GetIGUser type={"info"} />} />
+							<Route path="getInfo" element={<GetInfo />} />
+						</Route>
+					</Route>
+				</Route>
+			</Route>
+		)
+	);
+	localStorage.getItem("plan") === null && localStorage.setItem("plan", "FREE"); // set plan to FREE by default
+	return (
+		<div className="App row me-0">
+			<RouterProvider router={router} />
 		</div>
 	);
 };

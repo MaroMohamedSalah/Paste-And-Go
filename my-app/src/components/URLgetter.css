@@ -1,0 +1,88 @@
+.urlGetter {
+	width: 100%;
+	height: 75%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+.InstaStory {
+	height: 75%;
+}
+.media {
+	position: relative;
+	width: 50%;
+}
+.media label {
+	position: absolute;
+	padding: 20px;
+	color: var(--Yellow);
+	transition: all 0.5s ease-in-out;
+	left: 0;
+	width: fit-content;
+}
+.media .error {
+	position: absolute;
+	width: fit-content;
+	color: #ff3333;
+	font-size: 1em;
+	top: 94px;
+}
+.media input {
+	position: relative;
+	width: 100%;
+	height: 4em;
+	background: transparent;
+	border: 3px solid var(--BlueGray);
+	border-radius: 6px;
+	padding: 20px;
+	z-index: 100;
+	outline: none;
+	caret-color: var(--Yellow);
+	color: var(--Pewter);
+}
+.media input:focus ~ label,
+.media input:valid ~ label {
+	padding: 0 4px;
+	transform: translate(10px, -50%);
+	z-index: 110;
+	background-color: var(--DarkBlue);
+}
+.MP3,
+.MP4 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 34px;
+	pointer-events: none;
+	opacity: 0;
+	transition: all 0.5s ease-in-out;
+}
+.MP3 button,
+.MP4 button {
+	padding: 10px 64px;
+	border: none;
+	border-radius: 6px;
+	color: var(--DarkBlue);
+	font-size: 1.25em;
+}
+.MP3 button {
+	background-color: var(--BlueGray);
+}
+.MP4 button {
+	background-color: var(--BlueGray);
+	transition: all 0.2s ease-in-out;
+}
+.MP3 button:hover,
+.MP4 button:hover {
+	background-color: var(--LightBlueGray);
+}
+@media only screen and (max-width: 768px) {
+	.media {
+		width: 80% !important;
+	}
+	.media .error {
+		width: 100%;
+		text-align: center;
+	}
+}
