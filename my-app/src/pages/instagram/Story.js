@@ -5,12 +5,14 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import Steps from "../../Atoms/Steps";
+
 const Story = () => {
 	const [username, setUserName] = useRecoilState(UserNameIG);
 	const [step, setStep] = useRecoilState(Steps);
 	const [stories, setStories] = useState([]);
 	const [id, setID] = useState("");
 
+	// Function to get the user ID based on the provided username
 	const getUserID = () => {
 		const options = {
 			method: "GET",
@@ -24,21 +26,24 @@ const Story = () => {
 		axios
 			.request(options)
 			.then(function (response) {
-				response.data.status === "ok"
-					? setID(response.data.result)
-					: Swal.fire({
-							icon: "error",
-							title: "Oops...",
-							text: "User Not Found!",
-							footer:
-								'<a href="https://wa.me/+2001102654851">Contact the owner?</a>',
-					  });
+				if (response.data.status === "ok") {
+					setID(response.data.result);
+				} else {
+					Swal.fire({
+						icon: "error",
+						title: "Oops...",
+						text: "User Not Found!",
+						footer:
+							'<a href="https://wa.me/+2001102654851">Contact the owner?</a>',
+					});
+				}
 			})
 			.catch(function (error) {
 				console.error(error);
 			});
 	};
 
+	// Function to make the API call and fetch the story data
 	const downloadLink = () => {
 		const options = {
 			method: "POST",
@@ -50,6 +55,7 @@ const Story = () => {
 			},
 			data: `{"ids":[${id}]}`,
 		};
+
 		axios
 			.request(options)
 			.then(function (response) {
@@ -85,10 +91,12 @@ const Story = () => {
 				}
 			});
 	};
+
 	useEffect(() => {
 		getUserID();
 		id !== "" && downloadLink();
 	}, [id]);
+
 	return (
 		<div className="stories IG">
 			{stories.length === 0 ? (

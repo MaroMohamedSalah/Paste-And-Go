@@ -9,20 +9,23 @@ import { Link, useNavigate } from "react-router-dom";
 const Mp3FB = () => {
 	const [step, setStep] = useRecoilState(Steps);
 	const [url, setUrl] = useRecoilState(FBurl);
-	const [data, setData] = useState([]); // download link
+	const [data, setData] = useState([]);
 	const [isError, setIsError] = useState(false);
 	const navigate = useNavigate();
-	const handelError = () => {
+
+	const handleError = () => {
 		Swal.fire({
 			icon: "error",
 			title: "Oops...",
-			text: `No result to download!`,
+			text: "No result to download!",
 			footer: '<a href="https://wa.me/+2001102654851">Contact the owner?</a>',
 		});
+
 		setTimeout(() => {
 			navigate("/facebook");
 		}, 1000);
 	};
+
 	const downloadLink = () => {
 		const options = {
 			method: "GET",
@@ -37,7 +40,6 @@ const Mp3FB = () => {
 		axios
 			.request(options)
 			.then(function (response) {
-				console.log(response.status);
 				if (response.status === 200) {
 					setData(response.data);
 				} else {
@@ -49,6 +51,7 @@ const Mp3FB = () => {
 							'<a href="https://wa.me/+2001102654851">Contact the owner?</a>',
 					});
 				}
+
 				response.data.requested_formats[1].resolution !== "audio only" &&
 					setIsError(true);
 			})
@@ -72,13 +75,13 @@ const Mp3FB = () => {
 				}
 			});
 	};
+
 	useEffect(() => {
 		downloadLink();
 	}, []);
+
 	return (
 		<div className="Mp3 h-100">
-			{/* <h1 className="text-center">I'm Still Working On It</h1>
-			<img className="img-fluid w-25" src={stillWorking} alt="" srcset="" /> */}
 			<div className="h-100 d-flex justify-content-center align-items-center">
 				{data.length === 0 ? (
 					<div className="spinner-border" role="status">
@@ -108,14 +111,14 @@ const Mp3FB = () => {
 								className="btn col-3 m-2 w-100"
 								onClick={(e) => {
 									data.status === "fail" && e.preventDefault();
-									data.status === "fail"
-										? Swal.fire({
-												icon: "error",
-												title: "Oops...",
-												text: "Long audio of more than 2 hr duration are not allowed",
-										  })
-										: setStep(2);
-									data.status !== "fail" &&
+									if (data.status === "fail") {
+										Swal.fire({
+											icon: "error",
+											title: "Oops...",
+											text: "Long audio of more than 2 hr duration are not allowed",
+										});
+									} else {
+										setStep(2);
 										Swal.fire({
 											position: "top-end",
 											icon: "success",
@@ -123,6 +126,7 @@ const Mp3FB = () => {
 											showConfirmButton: false,
 											timer: 1500,
 										});
+									}
 								}}
 							>
 								<h5 className="z-3 position-relative">Download MP3</h5>
@@ -130,10 +134,11 @@ const Mp3FB = () => {
 						</div>
 					</div>
 				) : (
-					handelError()
+					handleError()
 				)}
 			</div>
 		</div>
 	);
 };
+
 export default Mp3FB;

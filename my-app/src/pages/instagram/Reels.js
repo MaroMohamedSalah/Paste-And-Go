@@ -5,10 +5,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import Steps from "../../Atoms/Steps";
+
 const Reels = () => {
 	const [url, setUrl] = useRecoilState(ReelsURL);
 	const [step, setStep] = useRecoilState(Steps);
 	const [reels, setReels] = useState([]);
+
+	// Function to extract the shortcode from the Instagram reel URL
 	const getShortCode = (url) => {
 		let u = url
 			.match(
@@ -17,6 +20,8 @@ const Reels = () => {
 			.toString();
 		return u.replace(/(>|<)/gi, "").split(/reel\//)[1];
 	};
+
+	// Function to make the API call and fetch the reel data
 	const downloadLink = () => {
 		const options = {
 			method: "GET",
@@ -63,9 +68,11 @@ const Reels = () => {
 				}
 			});
 	};
+
 	useEffect(() => {
 		downloadLink();
 	}, []);
+
 	return (
 		<div className="Reels IG">
 			{reels.length === 0 ? (

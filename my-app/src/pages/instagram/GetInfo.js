@@ -1,15 +1,17 @@
 import { useRecoilState } from "recoil";
 import UserNameIG from "../../Atoms/UserNameIG";
-import "./ig.css";
-import "./GetInfo.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import Steps from "../../Atoms/Steps";
+import "./ig.css";
+import "./GetInfo.css";
+
 const GetInfo = () => {
 	const [username, setUserName] = useRecoilState(UserNameIG);
 	const [step, setStep] = useRecoilState(Steps);
 	const [info, setInfo] = useState([]);
+
 	const downloadLink = () => {
 		const options = {
 			method: "GET",
@@ -20,6 +22,7 @@ const GetInfo = () => {
 				"X-RapidAPI-Host": "instagram210.p.rapidapi.com",
 			},
 		};
+
 		axios
 			.request(options)
 			.then(function (response) {
@@ -55,15 +58,17 @@ const GetInfo = () => {
 				}
 			});
 	};
+
 	useEffect(() => {
 		downloadLink();
 	}, []);
+
 	return (
 		<div className="info IG">
 			{info.length === 0 ? (
 				<div className="loading d-flex justify-content-center align-items-center">
 					<div className="spinner-border" role="status">
-						<span class="visually-hidden">Loading...</span>
+						<span className="visually-hidden">Loading...</span>
 					</div>
 				</div>
 			) : (
@@ -79,7 +84,7 @@ const GetInfo = () => {
 							Category: <span>{info[0].category}</span>
 						</li>
 					</ul>
-					<ul className="follow m-md-5 m-0 ">
+					<ul className="follow m-md-5 m-0">
 						<li>
 							Followers:{" "}
 							<span>
@@ -92,7 +97,6 @@ const GetInfo = () => {
 						<li>
 							Following:{" "}
 							<span>
-								{" "}
 								<span>
 									{info[0].following_count > 1000
 										? Math.round(info[0].following_count / 1000)
@@ -107,7 +111,7 @@ const GetInfo = () => {
 							<li>
 								Verified{" "}
 								<span>
-									<i class="fa-solid fa-certificate"></i>
+									<i className="fa-solid fa-certificate"></i>
 								</span>
 							</li>
 						)}
@@ -131,7 +135,7 @@ const GetInfo = () => {
 							<li>
 								Business{" "}
 								<span>
-									<i class="fa-solid fa-user-tie"></i>
+									<i className="fa-solid fa-user-tie"></i>
 								</span>
 							</li>
 						)}
@@ -146,7 +150,7 @@ const GetInfo = () => {
 						)}
 						{info[0].is_new_to_instagram === true && (
 							<li>
-								New in instagram{" "}
+								New in Instagram{" "}
 								<span>
 									<i className="fa-regular fa-face-smile"></i>
 								</span>
@@ -186,7 +190,7 @@ const GetInfo = () => {
 							className="link"
 						>
 							<button className="btn btn-primary picBtn">
-								View & Download profile pic
+								View & Download Profile Pic
 							</button>
 						</a>
 					</div>
