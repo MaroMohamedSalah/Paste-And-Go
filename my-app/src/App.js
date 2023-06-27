@@ -19,6 +19,9 @@ import HomeLayout from "./layouts/Home-layout";
 import YouTubeLayout from "./layouts/Youtube-layout";
 import InstagramLayout from "./layouts/Instagram-layout";
 import Reels from "./pages/instagram/Reels";
+import DownloadFromUrl from "./pages/youtube/Download-from-url";
+import YoutubeSearch from "./pages/youtube/Youtube-Search";
+
 const App = () => {
 	const router = createBrowserRouter(
 		createRoutesFromElements(
@@ -35,6 +38,7 @@ const App = () => {
 					<Route path="mp4" element={<Mp4FB />} />
 					<Route path="mp3" element={<Mp3FB />} />
 				</Route>
+
 				<Route
 					path="youtube"
 					element={
@@ -43,10 +47,32 @@ const App = () => {
 						</>
 					}
 				>
-					<Route path="" element={<YouTubeLayout />} />
-					<Route path="mp4" element={<Mp4YT />} />
-					<Route path="mp3" element={<Mp3YT />} />
+					<Route path="" element={<YouTubeLayout />}>
+						<Route
+							path="download-from-url"
+							element={
+								<>
+									<Outlet />
+								</>
+							}
+						>
+							<Route path="" element={<DownloadFromUrl />} />
+							<Route path="mp3" element={<Mp3YT />} />
+							<Route path="mp4" element={<Mp4YT />} />
+						</Route>
+						<Route
+							path="youtube-search"
+							element={
+								<>
+									<Outlet />
+								</>
+							}
+						>
+							<Route path="" element={<YoutubeSearch />} />
+						</Route>
+					</Route>
 				</Route>
+
 				<Route
 					path="/"
 					element={

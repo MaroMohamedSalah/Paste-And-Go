@@ -1,10 +1,10 @@
-.instaOptions {
+.navOpt {
 	width: 100%;
 	display: flex;
 	justify-content: space-around;
 	list-style: none;
 }
-.instaOptions a {
+.navOpt a {
 	text-decoration: none;
 	display: flex;
 	justify-content: center;
@@ -17,20 +17,20 @@
 	border-radius: 6px;
 	transition: all 0.5s ease-in-out;
 }
-.instaOptions .active {
+.navOpt .active {
 	border: 2px solid var(--LightBlueGray);
 }
-.instaOptions a .icon {
+.navOpt a .icon {
 	color: var(--Yellow);
 	margin: 10px 0px;
 }
-.instaOptions a li {
+.navOpt a li {
 	font-size: 1.5em;
 	color: var(--BlueGray);
 }
 
 @media only screen and (max-width: 768px) {
-	.instaOptions a li {
+	.navOpt a li {
 		font-size: 1em;
 	}
 }

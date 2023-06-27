@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
-import InstaNav from "../components/InstaNav";
+import SubNav from "../components/SubNav";
 
 const InstagramLayout = () => {
 	return (
 		<>
-			<InstaNav />
+			<SubNav parent={"instagram"} />
 			<Outlet />
 		</>
 	);
