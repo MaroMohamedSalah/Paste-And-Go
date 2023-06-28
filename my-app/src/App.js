@@ -21,6 +21,7 @@ import InstagramLayout from "./layouts/Instagram-layout";
 import Reels from "./pages/instagram/Reels";
 import DownloadFromUrl from "./pages/youtube/Download-from-url";
 import YoutubeSearch from "./pages/youtube/Youtube-Search";
+import PageNotFound from "./pages/Notfound/Page-Not-Found";
 
 const App = () => {
 	const router = createBrowserRouter(
@@ -117,6 +118,7 @@ const App = () => {
 						</Route>
 					</Route>
 				</Route>
+				<Route path="*" element={<PageNotFound />} />
 			</Route>
 		)
 	);
