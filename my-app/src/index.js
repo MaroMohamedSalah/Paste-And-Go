@@ -9,6 +9,7 @@ import { RecoilRoot } from "recoil";
 
 import { initializeApp } from "firebase/app";
 import { getMessaging, getToken } from "firebase/messaging";
+import { Provider } from "react-redux";
 
 const firebaseConfig = {
 	apiKey: "AIzaSyBzlLFSDCNUN9uVE8KhyU6VqHcw3AZbCxU",
@@ -34,6 +35,9 @@ getToken(messaging, {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<React.StrictMode>
+		{/* <Provider >
+
+		</Provider> */}
 		<RecoilRoot>
 			<App />
 		</RecoilRoot>

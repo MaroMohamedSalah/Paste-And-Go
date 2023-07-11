@@ -61,6 +61,7 @@ const Story = () => {
 			.then(function (response) {
 				if (response.status === 200) {
 					setStories(response.data);
+					console.log("stories", stories);
 				} else {
 					Swal.fire({
 						icon: "error",
@@ -116,7 +117,7 @@ const Story = () => {
 					<h1 className="placeholder col-7"></h1>
 				</p>
 			) : (
-				stories.response.body.reels_media.length !== 0 && (
+				stories.response.body.reels.length !== 0 && (
 					<ul className="text-center">
 						<li>
 							Username:{" "}
@@ -157,13 +158,13 @@ const Story = () => {
 				) : (
 					<div className="downloadCard">
 						<div className="download-selection">
-							{stories.response.body.reels_media.length === 0 ? (
+							{stories.response.body.reels.length === 0 ? (
 								<h1 className="text-center error">
 									{" "}
 									This Username Does Not Have Any Videos In His Story
 								</h1>
 							) : (
-								stories.response.body.reels_media[0].items.map((s, i) => {
+								stories.response.body.reels[0].items.map((s, i) => {
 									return (
 										"video_versions" in s && (
 											<a
