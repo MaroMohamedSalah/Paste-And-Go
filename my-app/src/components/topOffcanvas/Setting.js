@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import Active from "../../Atoms/Active";
-import "./Setting.css";
+import "./setting.css";
 
 const Setting = () => {
 	const [active, setActive] = useRecoilState(Active);

@@ -1,7 +1,6 @@
 .Nav-v {
 	position: relative;
 	min-height: calc(100vh - 14vh - 10vh);
-	/* width: fit-content; */
 	padding: 0px 9px;
 	background-color: var(--DarkBlueLight);
 	box-shadow: 2px 0px 2px -2px rgba(0, 0, 0, 0.2);
@@ -44,7 +43,7 @@
 		transform: translateX(-70%);
 	}
 	.Nav-v[hide="false"] {
-		transform: translateX(0);
+		/* transform: translateX(0); */
 		width: 25%;
 	}
 }

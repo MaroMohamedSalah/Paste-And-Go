@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import "./Setting.css";
+import "./setting.css";
 import "./plan.css";
 import plans from "../plans.json";
 import Plan from "../../Atoms/Plan";
