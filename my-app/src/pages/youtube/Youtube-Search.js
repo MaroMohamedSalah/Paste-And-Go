@@ -46,7 +46,7 @@ const YoutubeSearch = () => {
 			});
 	};
 
-	const downloadLinkMp4 = (videoID) => {
+	const downloadVideoMp4 = (videoID) => {
 		const options = {
 			method: "GET",
 			url: "https://ytstream-download-youtube-videos.p.rapidapi.com/dl",
@@ -61,17 +61,8 @@ const YoutubeSearch = () => {
 			.request(options)
 			.then(function (response) {
 				if (response.status === 200) {
-					if ("error" in response.data) {
-						Swal.fire({
-							icon: "error",
-							title: "Oops...",
-							text: "Something went wrong!",
-							footer:
-								'<a href="https://wa.me/+2001102654851">Contact the owner?</a>',
-						});
-					} else {
-						window.open(response.data.link);
-					}
+					let formats = response.data.formats;
+					window.open(formats[formats.length - 1].url);
 				} else {
 					Swal.fire({
 						icon: "error",
@@ -113,14 +104,7 @@ const YoutubeSearch = () => {
 				downloadVideoMp3(video.id);
 			} else if (result.dismiss === Swal.DismissReason.cancel) {
 				// MP4 button clicked, handle MP4 logic
-				// downloadLinkMp4(video.id);
-				Swal.fire({
-					icon: "error",
-					title: "Oops...",
-					text: "Still Working On It!",
-					footer:
-						'<a href="https://wa.me/+2001102654851">Contact the developer?</a>',
-				});
+				downloadVideoMp4(video.id);
 			} else {
 				// Modal dismissed without clicking a button
 				// Add your code here to handle this case
