@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Profiler } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
@@ -32,6 +32,19 @@ getToken(messaging, {
 		"BLsyjCAEAEDklJVOjllh5jRDoEPuZht82G2_OTbhDyTq9EtBVhtH6mRMgHG_dChNZpGWlJ-LwL1ig_n9vpeMTw8",
 });
 
+// Callback function to handle profiling results
+function onProfilerRender(
+	id, // Identifier of the Profiler component
+	phase, // Either "mount" (component is being mounted) or "update" (component is being re-rendered)
+	actualDuration, // Time taken to render the component
+	baseDuration, // Estimated time to render the entire subtree without memoization
+	startTime, // When React began rendering this update
+	commitTime, // When React committed this update
+	interactions // Set of interactions that were being traced when this update was scheduled
+) {
+	// You can perform any custom actions with the profiling results here
+}
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<React.StrictMode>
@@ -39,7 +52,10 @@ root.render(
 
 		</Provider> */}
 		<RecoilRoot>
-			<App />
+			{/* Add the Profiler tag */}
+			<Profiler id="AppProfiler" onRender={onProfilerRender}>
+				<App />
+			</Profiler>
 		</RecoilRoot>
 	</React.StrictMode>
 );

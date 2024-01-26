@@ -59,13 +59,23 @@ const Mp3YT = () => {
 			});
 	};
 	const getVideoInfo = () => {
+		// const options = {
+		// 	method: "GET",
+		// 	url: "https://simple-youtube-search.p.rapidapi.com/video",
+		// 	params: { search: `https://youtu.be/${videoID}` },
+		// 	headers: {
+		// 		"X-RapidAPI-Key": "0359bd5187msh1d9d91398b35961p168041jsn1ba3b053ae5b",
+		// 		"X-RapidAPI-Host": "simple-youtube-search.p.rapidapi.com",
+		// 	},
+		// };
+
 		const options = {
 			method: "GET",
-			url: "https://simple-youtube-search.p.rapidapi.com/video",
-			params: { search: `https://youtu.be/${videoID}` },
+			url: "https://youtube-search-and-download.p.rapidapi.com/video",
+			params: { id: videoID },
 			headers: {
-				"X-RapidAPI-Key": "0359bd5187msh1d9d91398b35961p168041jsn1ba3b053ae5b",
-				"X-RapidAPI-Host": "simple-youtube-search.p.rapidapi.com",
+				"X-RapidAPI-Key": "251033cf4emshf3054a8b4557678p1fac0ajsn81864a3c4d44",
+				"X-RapidAPI-Host": "youtube-search-and-download.p.rapidapi.com",
 			},
 		};
 
@@ -102,6 +112,10 @@ const Mp3YT = () => {
 		downloadLink();
 		getVideoInfo();
 	}, []);
+
+	useEffect(() => {
+		console.log(info);
+	}, [info]);
 	return (
 		<div className="Mp3 h-100">
 			<div className="h-100 d-flex justify-content-center align-items-center">
@@ -121,18 +135,26 @@ const Mp3YT = () => {
 							) : (
 								<img
 									className="col-md-6 col-lg-6 col img-fluid"
-									src={info.result.thumbnail.url}
+									src={info.videoDetails.thumbnail.thumbnails[1].url}
 									alt=""
 								/>
 							)}
 							<div className="des col-md-6 col-lg-6 col d-flex justify-content-between flex-column">
 								<div className="title fs-3">{data.title}</div>
 								<p className="info" aria-hidden="true">
-									Duration:{" "}
+									Channel:{" "}
 									{info.length === 0 ? (
 										<span className="placeholder col-2"></span>
 									) : (
-										info.result.duration_formatted
+										info.videoDetails.author
+									)}
+								</p>
+								<p className="info" aria-hidden="true">
+									Views:{" "}
+									{info.length === 0 ? (
+										<span className="placeholder col-2"></span>
+									) : (
+										info.videoDetails.viewCount
 									)}
 								</p>
 							</div>
@@ -141,7 +163,7 @@ const Mp3YT = () => {
 							<a
 								href={data.link}
 								target="_self"
-								className="btn col-3 m-2 w-100"
+								className="btn col-3 m-4 w-100"
 								onClick={(e) => {
 									data.status === "fail" && e.preventDefault();
 									data.status === "fail"
